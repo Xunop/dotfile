@@ -1,0 +1,240 @@
+* {
+  border: none;
+  border-radius: 10px;
+  font-family: "NotoSans Nerd Font";
+  font-size: 15px;
+  min-height: 10px;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#tray {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+}
+#taskbar {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+}
+
+#workspaces {
+  margin-top: 6px;
+  margin-left: 12px;
+  font-size: 4px;
+  margin-bottom: 0px;
+  background: #161320;
+  border-radius: 10px;
+  transition: none;
+}
+
+#workspaces button {
+  transition: none;
+  color: #b5e8e0;
+  font-size: 16px;
+  border-radius: 2px;
+}
+
+#workspaces button.active {
+  transition: none;
+  color: #f28fad;
+  background: transparent;
+  font-size: 10px;
+}
+
+#workspaces button.focused {
+  color: #abe9b3;
+  border-top: 2px solid #abe9b3;
+  border-bottom: 2px solid #abe9b3;
+}
+
+#workspaces button.urgent {
+  color: #11111b;
+  background: #a6e3a1;
+  border-radius: 10px;
+}
+
+#workspaces button:hover {
+  border-radius: 25%;
+  transition: none;
+  background: #e8a2af;
+  background: rgba(248, 162, 175, 0.1);
+  box-shadow: inherit;
+  text-shadow: inherit;
+  color: #fae3b0;
+  border-color: #e8a2af;
+  color: #e8a2af;
+}
+
+#network {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #bd93f9;
+}
+
+#pulseaudio {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  transition: none;
+  color: #1a1826;
+  background: #fae3b0;
+}
+
+#battery {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #b5e8e0;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: #161320;
+  background-color: #b5e8e0;
+}
+
+#battery.critical:not(.charging) {
+  background-color: #b5e8e0;
+  color: #161320;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  to {
+    background-color: #bf616a;
+    color: #b5e8e0;
+  }
+}
+
+#backlight {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #f8bd96;
+}
+#clock {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #abe9b3;
+  /*background: #1A1826;*/
+}
+
+#memory {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #ddb6f2;
+}
+#cpu {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #96cdfb;
+}
+
+#tray {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  border-radius: 10px;
+  transition: none;
+  color: #b5e8e0;
+  background: #161320;
+}
+
+#custom-launcher {
+  font-size: 24px;
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 5px;
+  border-radius: 10px;
+  transition: none;
+  color: #89dceb;
+  background: #161320;
+}
+
+#custom-power {
+  font-size: 20px;
+  margin-top: 6px;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding-left: 10px;
+  padding-right: 5px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #f28fad;
+}
+
+#custom-updates {
+  margin-top: 6px;
+  margin-left: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 0px;
+  border-radius: 10px;
+  transition: none;
+  color: #161320;
+  background: #c9cbff;
+}

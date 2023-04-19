@@ -1,0 +1,2 @@
+/opt/anaconda
+/opt/anaconda/envs/myenv

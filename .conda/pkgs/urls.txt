@@ -1,0 +1,8 @@
+https://repo.anaconda.com/pkgs/main/linux-64/conda-package-streaming-0.7.0-py39h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/conda-package-handling-2.0.2-py39h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/zstandard-0.19.0-py39h5eee18b_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/conda-repo-cli-1.0.41-py39h06a4308_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/ninja-1.10.2-h06a4308_5.conda
+https://repo.anaconda.com/pkgs/main/linux-64/pytorch-1.12.1-cpu_py39hb1f1ab4_1.conda
+https://repo.anaconda.com/pkgs/main/linux-64/libprotobuf-3.20.1-h4ff587b_0.conda
+https://repo.anaconda.com/pkgs/main/linux-64/ninja-base-1.10.2-hd09550d_5.conda
