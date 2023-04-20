@@ -3,6 +3,23 @@ This Git repository stores the configuration files for my personal computer.
 Referenced from this article: [How to Store Dotfiles - A Bare Git Repository | Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/dotfiles)
 
 ## Usage
+
+### Install dotfile from repo
+
+1. Create an alias for the Git repository using the config command:
+
+```bash
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+```
+
+2. Clone repo:
+
+```bash
+git clone --bare <git-repo-url> $HOME/.cfg
+```
+
+### Tracking your configurations in a Git repository
+
 1. Initialize the Git repository:
 
 ```bash
@@ -38,9 +55,4 @@ config commit -m "<commit message>"
 
 ```bash
 config push <remote> <branch>
-```
-
-6. Clone repo:
-```bash
-git clone --bare <git-repo-url> $HOME/.cfg
 ```
