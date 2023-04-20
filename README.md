@@ -39,3 +39,8 @@ config commit -m "<commit message>"
 ```bash
 config push <remote> <branch>
 ```
+
+6. Clone repo:
+```bash
+git clone --bare <git-repo-url> $HOME/.cfg
+```
