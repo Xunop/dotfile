@@ -1,0 +1,94 @@
+#!/bin/sh
+
+# 仙林校区
+wlanacip="10.255.252.150"
+
+wlanacname="XL-BRAS-SR8806-X"
+
+account=""
+passwd=""
+
+# 获取ip
+ip=$(ip route | awk '/default/ { print $9 }')
+# 获取运营商
+isp=$(nmcli -t -f ACTIVE,SSID dev wifi | grep yes | cut -d: -f2)
+
+help() {
+	echo "Usage: ./your_script.sh [options]"
+	echo ""
+	echo "Options:"
+	echo "  -h, --help          Display help message"
+	echo "  -a, --account       Specify the account"
+	echo "  -p, --passwd        Specify the password"
+	echo "  -e,                 Logout from campus network"
+	echo ""
+	echo "Examples:"
+	echo "  ./your_script.sh -a your_account -p your_password"
+	echo "  ./your_script.sh -e"
+}
+
+logout() {
+	curl "http://10.10.244.11:801/eportal/?c=ACSetting&a=Logout&wlanuserip=${ip}&wlanacip=${wlanacip}0&wlanacname=${wlanacname}&hostname=10.10.244.11&queryACIP=0"
+	printf "log off\n"
+	exit 0
+}
+
+# 参数解析
+while getopts ':a:p:eh' OPT; do
+	case $OPT in
+	a) account=$OPTARG ;;
+	p) passwd=$OPTARG ;;
+	e) logout ;;
+	h) help ;;
+	?)
+		help
+		exit 1
+		;;
+	esac
+done
+
+# 移动到下一个参数
+shift $(($OPTIND - 1))
+# 检测必须参数是否为空
+if [ -z "$account" ]; then
+	echo "Missing required argument: -a" >&2
+	exit 1
+fi
+
+if [ -z "$passwd" ]; then
+	echo "Missing required argument: -p" >&2
+	exit 1
+fi
+# 校园网自动登录
+if [ "$isp" = "NJUPT-CHINANET" -o "$isp" = "NJUPT-CMCC" -o "$isp" = "NJUPT" ]; then
+
+	if [ "$isp" = "NJUPT-CHINANET" ]; then
+		printf "CHINANET\n"
+		login="%2C0%2C${account}%40njxy"
+	elif [ "$isp" = "NJUPT-CMCC" ]; then
+		printf "CMCC\n"
+		login="%2C0%2C${account}%40cmcc"
+	elif [ "$isp" = "NJUPT" ]; then
+		printf "NJUPT\n"
+		login="%2C0%2C${account}"
+	else
+		printf "无法识别运营商\n"
+		exit 0
+	fi
+else
+	echo "connected to $isp"
+	exit 0
+fi
+
+login() {
+	curl "http://10.10.244.11:801/eportal/?c=ACSetting&a=Login&protocol=http:&hostname=10.10.244.11&iTermType=1&wlanuserip=${ip}&wlanacip=${wlanacip}&wlanacname=${wlanacname}&mac=00-00-00-00-00-00&ip=${ip}&enAdvert=0&queryACIP=0&loginMethod=1" \
+		--data "DDDDD=${login}&upass=${passwd}&R1=0&R2=0&R3=0&R6=0&para=00&0MKKey=123456&buttonClicked=&redirect_url=&err_flag=&username=&password=&user=&cmd=&Login=&v6ip="
+
+	if curl -s --head --connect-timeout 10 https://www.baidu.com | head -n 1 | grep "HTTP/1.[01] [23].." >/dev/null; then
+		echo "Connected to the Internet"
+	else
+		echo "Not connected to the Internet"
+	fi
+}
+
+login
