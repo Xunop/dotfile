@@ -78,8 +78,7 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
 	fast-syntax-highlighting
-	zsh-autosuggestions
-	zsh-autocomplete)
+	zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -141,9 +140,7 @@ alias ua-update-all='export TMPFILE="$(mktemp)"; \
       && paru -Syyu --noconfirm'
 
 # 开启代理
-alias proxy='source ~/.local/bin/proxy.sh ""'
-
-source /usr/share/nvm/init-nvm.sh
+alias proxy='source ~/.config/.script/proxy.sh'
 
 
 # >>> conda initialize >>>

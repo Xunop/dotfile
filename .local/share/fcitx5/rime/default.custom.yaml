@@ -1,0 +1,18 @@
+patch:
+  "switcher/hotkeys":
+    - "Control+grave"
+  schema_list:
+    - schema: luna_pinyin_simp
+  "style":
+    "font_point": 14
+  "menu/page_size": 8
+  "switches/@0/reset": 1
+  ascii_composer/switch_key:
+    Shift_L: noop
+    Shift_R: commit_code
+  key_binder:
+    bindings:
+      - { accept: "Control+space", toggle: ascii_mode, when: always }
+      - { accept: "Tab", send: Down, when: composing }
+      - { accept: "bracketleft", send: Page_Up, when: paging }
+      - { accept: "bracketright", send: Page_Down, when: has_menu }

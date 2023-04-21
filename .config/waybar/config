@@ -2,7 +2,7 @@
 	"layer": "top",
 	"modules-left": ["custom/launcher","memory", "tray"],
 	"modules-center": ["wlr/workspaces"],
-	"modules-right": ["custom/updates","backlight","pulseaudio","clock","battery","custom/power"],
+	"modules-right": ["custom/updates","pulseaudio","clock","custom/power"],
 	
     "tray": {
         "icon-size": 18,
