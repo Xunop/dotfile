@@ -10,4 +10,7 @@ export WLR_NO_HARDWARE_CURSORS=1
 export SDL_VIDEODRIVER=wayland
 export MOZ_ENABLE_WAYLAND=1
 export GTK_THEME=Catppuccin-blue:dark
+export XMODIFIERS="@im=fcitx"
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
 exec Hyprland

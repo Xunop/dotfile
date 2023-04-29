@@ -2,7 +2,7 @@
 	"layer": "top",
 	"modules-left": ["custom/launcher","memory", "tray"],
 	"modules-center": ["wlr/workspaces"],
-	"modules-right": ["custom/updates","pulseaudio","clock","custom/power"],
+	"modules-right": ["custom/updates","clock","custom/power"],
 	
     "tray": {
         "icon-size": 18,
@@ -32,9 +32,9 @@
 		"scroll-step": 5,
 		"format": "{icon} {volume}%",
 		"format-muted": "{icon} {volume}%",
-		"on-click":"pamixer -t",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5",
+		"on-click":"amixer set Master toggle",
+        "on-scroll-up": "amixer set Master 5%+",
+        "on-scroll-down": "amixer set Master 5%-",
 		"format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -89,7 +89,7 @@
     },
     "custom/launcher":{
         "format": " ",
-        "on-click": "wofi --show drun",
+        "on-click": "rofi --show drun",
         "on-click-right": "killall wofi"
     },
     "custom/power":{

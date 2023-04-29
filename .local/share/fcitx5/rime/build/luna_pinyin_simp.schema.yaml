@@ -1,22 +1,22 @@
 __build_info:
   rime_version: 1.8.5
   timestamps:
-    default: 1682071530
-    default.custom: 1682071530
+    default: 1682134010
+    default.custom: 1682134010
     emoji_suggestion: 1679368975
     emoji_suggestion.custom: 0
     grammar: 0
-    key_bindings: 1682071524
+    key_bindings: 1682134010
     key_bindings.custom: 0
     luna_pinyin.custom: 0
-    luna_pinyin.schema: 1682071522
-    luna_pinyin_simp.custom: 1682071526
-    luna_pinyin_simp.schema: 1682071522
-    pinyin: 1682071524
+    luna_pinyin.schema: 1682134010
+    luna_pinyin_simp.custom: 1682134010
+    luna_pinyin_simp.schema: 1682134010
+    pinyin: 1682134010
     pinyin.custom: 0
-    punctuation: 1682071524
+    punctuation: 1682134010
     punctuation.custom: 0
-    symbols: 1682071524
+    symbols: 1682134010
     symbols.custom: 0
 custom_phrase:
   db_class: stabledb
