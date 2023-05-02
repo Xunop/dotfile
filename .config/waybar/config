@@ -1,8 +1,8 @@
 {
 	"layer": "top",
-	"modules-left": ["custom/launcher","memory", "tray"],
+	"modules-left": ["custom/launcher", "memory", "tray"],
 	"modules-center": ["wlr/workspaces"],
-	"modules-right": ["custom/updates","clock","custom/power"],
+	"modules-right": ["custom/spotify", "custom/updates", "network", "clock"],
 	
     "tray": {
         "icon-size": 18,
@@ -10,7 +10,7 @@
     },
     "wlr/taskbar": {
         "format": "{icon}",
-        "icon-size": 14,
+        "icon-size": 15,
         "icon-theme": "Numix-Circle",
         "tooltip-format": "{title}",
         "on-click": "activate",
@@ -25,7 +25,6 @@
         "all-outputs": true,
         "on-click": "activate",
         "format": "{icon}",
-        "sort-by-number": true
     },
 	"pulseaudio": {
 		"tooltip": false,
@@ -101,5 +100,12 @@
         "interval": 7200,
         "format": " {}",
         "on-click": "(paru -Qu) | wc -l"
+    },
+    "custom/spotify": {
+        "format": " {}",
+        "max-length": 40,
+        "interval": 30, // Remove this if your script is endless and write in loop
+        "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null", // Script in resources folder
+        "exec-if": "pgrep spotify"
     }
 }

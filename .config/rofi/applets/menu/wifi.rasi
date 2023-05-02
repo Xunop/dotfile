@@ -1,0 +1,98 @@
+* {
+    font: "Noto Sans CJK SC Regular 14";
+    lines: 2;
+    padding: 20;
+    horizontal-padding: 30;
+    opacity: 100;
+    background-color: #202020;
+    foreground-color: #f8f8f8;
+    border-color: #444444;
+    border-width: 2;
+    border-radius: 10;
+    scrollbar: false;
+    hide-scrollbar: true;
+    location: center;
+    width: 50%;
+}
+
+#window {
+    background-color: #303030;
+    border-radius: 10;
+}
+
+#textbox {
+    font-size: 16;
+    padding: 15;
+    margin: 0;
+    color: #f8f8f8;
+    background-color: transparent;
+}
+
+#listview {
+    font-size: 16;
+    padding: 10;
+    margin: 0;
+    color: #f8f8f8;
+    background-color: transparent;
+}
+
+#element {
+    padding: 10;
+    margin: 0;
+    color: #f8f8f8;
+    background-color: transparent;
+}
+
+#element selected {
+    background-color: #444444;
+}
+
+#separator {
+    height: 1;
+    margin: 5 0;
+    background-color: #555555;
+}
+
+#message {
+    font-size: 14;
+    padding: 15;
+    margin: 0;
+    color: #f8f8f8;
+    background-color: transparent;
+}
+
+#dialog {
+    margin: 0;
+    padding: 0;
+}
+
+#dialog-content {
+    margin: 0;
+    padding: 20;
+}
+
+#dialog-message {
+    font-size: 14;
+    color: #f8f8f8;
+    padding: 0;
+    margin: 0;
+}
+
+#dialog-buttons {
+    margin: 20;
+    padding: 0;
+}
+
+#dialog-button {
+    padding: 10;
+    margin: 0;
+    color: #f8f8f8;
+    background-color: #303030;
+    border-color: #444444;
+    border-width: 2;
+    border-radius: 10;
+}
+
+#dialog-button.selected {
+    background-color: #444444;
+}

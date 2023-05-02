@@ -4,3 +4,8 @@
 github-copilot
 xray
 ualogin
+.cache
+luna_pinyin_simp.userdb/*
+*.log
+*/**/*.userdb/
+.cargo
