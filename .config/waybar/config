@@ -48,7 +48,8 @@
 	"network": {
 		"tooltip": false,
 		"format-wifi": "  {essid}",
-		"format-ethernet": ""
+		"format-ethernet": "",
+        "on-click": "pkill rofi || ~/.config/rofi/applets/menu/wifi.sh"
 	},
 	"backlight": {
 		"tooltip": false,
@@ -106,6 +107,7 @@
         "max-length": 40,
         "interval": 30, // Remove this if your script is endless and write in loop
         "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null", // Script in resources folder
-        "exec-if": "pgrep spotify"
+        "exec-if": "pgrep spotify",
+        "on-click": "playerctl play-pause"
     }
 }

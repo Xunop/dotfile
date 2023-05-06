@@ -7,7 +7,7 @@ rofi_command="rofi -theme $style"
 connected_wifi="$(nmcli -f active,ssid dev wifi | awk '/yes/ {print $2}')"
 
 # Get available WiFi networks
-wifi_list=$(nmcli -t -f SSID dev wifi list)
+wifi_list=$(nmcli -t -f SSID dev wifi list | grep -v '^$')
 
 # Create rofi options string
 options=""
@@ -15,8 +15,8 @@ while read -r line; do
     options="$options\n$line"
 done <<< "$wifi_list"
 
-# Show rofi menu
-chosen=$(echo -e "$options" | $rofi_command -dmenu -i -p "Choose WiFi Network:")
+# Show rofi menu filter empty str
+chosen=$(echo -e "$options" | grep -v '^$' | $rofi_command -dmenu -i -p "Choose WiFi Network:")
 if [ -z "$chosen" ]; then
     exit
 fi
