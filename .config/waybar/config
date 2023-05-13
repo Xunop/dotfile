@@ -75,7 +75,7 @@
 		"spacing": 10
 	},
     "clock": {
-        "format": "{: %H:%M  %Y/%m/%d}"
+        "format": "{: %H:%M  %Y/%m/%d}"
     },
     "cpu": {
         "interval": 15,
@@ -99,7 +99,7 @@
     "custom/updates": {
         "exec": "(paru -Qu) | wc -l",
         "interval": 7200,
-        "format": " {}",
+        "format": "󰇚 {}",
         "on-click": "(paru -Qu) | wc -l"
     }
 }

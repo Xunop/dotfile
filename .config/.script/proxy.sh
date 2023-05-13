@@ -27,7 +27,7 @@ set_proxy() {
 	# 设置不需要使用代理的主机或域名
 	export no_proxy="$no_proxy"
 	export NO_PROXY="$no_proxy"
-
+	go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/,direct
 	echo "代理已开启，代理服务器地址：$http_proxy"
 }
 # 取消代理
@@ -64,6 +64,7 @@ while case $1 in
 	-e)
 		shift
 		unset_proxy
+		exit
 		;;
 	*)
 		break

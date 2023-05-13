@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.config/.script:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -140,10 +140,9 @@ alias ua-update-all='export TMPFILE="$(mktemp)"; \
       && paru -Syyu --noconfirm'
 
 # 开启代理
-alias proxy='source ~/.local/bin/proxy.sh ""'
+alias proxy='source ~/.local/bin/proxy.sh'
 
 source /usr/share/nvm/init-nvm.sh
-
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
