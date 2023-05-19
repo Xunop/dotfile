@@ -9,3 +9,5 @@ luna_pinyin_simp.userdb/*
 *.log
 */**/*.userdb/
 .cargo
+.mail/*
+.gmailpass.gpg
