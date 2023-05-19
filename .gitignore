@@ -11,3 +11,4 @@ luna_pinyin_simp.userdb/*
 .cargo
 .mail/*
 .gmailpass.gpg
+.local/share/fcitx5/rime/build/*
