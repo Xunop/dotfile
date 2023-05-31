@@ -3,7 +3,14 @@
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.config/.script:$PATH
 export XDG_CONFIG_HOME="$HOME/.config"
 
-export LIBVA_DRIVER_NAME=radeonsi
+export HISTFILE="$HOME/.zsh_history"
+export LIBVA_DRIVER_NAME=radeons
+# Number of events loaded into memory
+export HISTSIZE=10000
+
+# Number of events stored in the zsh history file
+export SAVEHIST=10000
+
 export XDG_SESSION_TYPE=wayland
 export WLR_NO_HARDWARE_CURSORS=1
 export MOZ_ENABLE_WAYLAND=1
