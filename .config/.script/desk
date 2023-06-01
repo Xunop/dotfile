@@ -13,4 +13,4 @@ export GTK_THEME=Catppuccin-blue:dark
 export XMODIFIERS="@im=fcitx"
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
-exec Hyprland
+exec Hyprland > /tmp/hypr/log/logs.log 2>&1
