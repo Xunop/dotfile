@@ -51,8 +51,6 @@ zinit wait lucid for \
       zsh-users/zsh-autosuggestions \
   blockf atpull'zinit creinstall -q .' \
       zsh-users/zsh-completions \
-  atinit"zicompinit; zicdreplay" \
-      zsh-users/zsh-history-substring-search
 
 zinit ice wait"1" lucid
 zinit light lukechilds/zsh-nvm
@@ -84,8 +82,6 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias ip='ip --color=auto'
 
-# cat 
-alias cat=bat
 
 alias la='ls -A'
 alias ll='ls -Al'

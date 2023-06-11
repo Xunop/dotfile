@@ -2,7 +2,7 @@
 
 # 设置需要使用代理的协议
 proxy_protocol="socks5"
-proxy_port="10808"
+proxy_port="2080"
 # 设置代理服务器的地址和端口号
 proxy_server="$proxy_protocol://127.0.0.1:$proxy_port"
 
@@ -56,7 +56,7 @@ while case $1 in
 		shift
 		echo $proxy_protocol
 		if [ "$proxy_protocol" = "http" ]; then
-			proxy_point="10809"
+			proxy_point="2080"
 			proxy_server="$proxy_protocol://127.0.0.1:$proxy_point"
 		fi
 		set_proxy
