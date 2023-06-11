@@ -13,5 +13,6 @@ export QT_QPA_PLATFORM="wayland;xcb"
 export SDL_VIDEODRIVER=wayland
 export MOZ_ENABLE_WAYLAND=1
 export GTK_THEME=Catppuccin-blue:dark
+
 mkdir -p /tmp/hypr/log
 exec Hyprland > /tmp/hypr/log/logs.log 2>&1
