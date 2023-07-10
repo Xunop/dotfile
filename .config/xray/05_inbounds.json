@@ -1,0 +1,53 @@
+{
+    "inbounds": [
+        {
+            "tag": "tproxy",
+            "port": 12345,
+            "protocol": "dokodemo-door",
+            "settings": {
+                "network": "tcp,udp",
+                "followRedirect": true
+            },
+            "sniffing": {
+                "enabled": true,
+                "destOverride": ["http", "tls"]
+            },
+            "streamSettings": {
+                "sockopt": {
+                    "tproxy": "tproxy"
+                }
+            }
+        },
+
+        {
+            "listen": "127.0.0.1", // Fill in 0.0.0.0 to allow connections from LAN
+            "port": 10808, // local socks listening port
+            "tag": "cnproxy_socks",
+            "protocol": "socks",
+            "settings": {
+                "udp": true
+            },
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls"
+                ]
+            }
+        },
+
+        {
+            "listen": "127.0.0.1", // Fill in "0.0.0.0" to allow connections from LAN
+            "port": 10809, // Local http listening port
+            "tag": "cnproxy_http",
+            "protocol": "http",
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls"
+                ]
+            }
+        }
+    ]
+}

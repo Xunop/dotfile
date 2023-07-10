@@ -2,7 +2,6 @@
 .ssh
 .git-credentials
 github-copilot
-xray
 ualogin
 .cache
 luna_pinyin_simp.userdb/*
@@ -14,3 +13,4 @@ luna_pinyin_simp.userdb/*
 .local/share/fcitx5/rime/build/*
 .local/share/fcitx5/rime/user.yaml
 uassh
+private
