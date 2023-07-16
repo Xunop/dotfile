@@ -2,7 +2,7 @@
 
 # 设置需要使用代理的协议
 proxy_protocol="http"
-proxy_port="10808"
+proxy_port="10809"
 proxy_server="$proxy_protocol://127.0.0.1:$proxy_port"
 
 # 设置不需要使用代理的主机或域名
@@ -75,10 +75,11 @@ parse_args() {
     key="$1"
 
     case $key in
-      -p|--protocol)
-        proxy_protocol="$2"
+      -s|--socks)
+        proxy_protocol="socks5"
+        proxy_port="10808"
         set_proxy
-        shift 2
+        shift
         ;;
       -e|--exit)
         unset_proxy
@@ -99,7 +100,7 @@ parse_args() {
 help() {
   echo "usage: source xproxy [options]"
   echo "options:"
-  echo "  -p, --protocol <protocol>  set proxy protocol"
+  echo "  -s, --socks  set socks5 proxy"
   echo "  -e, --exit                 unset proxy"
   echo "  -h, --help                 show help"
   echo "example:"

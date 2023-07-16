@@ -82,7 +82,9 @@ parse_args() {
         shift
         ;;
       -s|--sync)
+        info_replace
         sync_xray
+        replace_info
         shift
         ;;
       -h|--help)
