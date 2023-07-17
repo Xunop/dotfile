@@ -8,6 +8,10 @@ qemu-system-x86_64 -drive file=$img_path,format=qcow2,if=virtio \
   -drive file=$iso,media=cdrom \
   -drive file=$vi_iso,media=cdrom \
   -boot order=d \
+  -audiodev pa,id=pa1 \
+  -device ich9-intel-hda,id=sound0,bus=pcie.0,addr=0x1b \
+  -device hda-duplex,id=sound0-codec0,bus=sound0.0,cad=0 \
+  -global ICH9-LPC.disable_s3=1 -global ICH9-LPC.disable_s4=1 \
   -device qemu-xhci \
   -device usb-tablet \
   -enable-kvm \
