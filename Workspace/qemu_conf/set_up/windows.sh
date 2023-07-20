@@ -10,7 +10,7 @@ qemu-system-x86_64 -drive file=$img_path,format=qcow2,if=virtio \
   -boot order=d \
   -audiodev pa,id=pa1 \
   -device ich9-intel-hda,id=sound0,bus=pcie.0,addr=0x1b \
-  -device hda-duplex,id=sound0-codec0,bus=sound0.0,cad=0 \
+  -device hda-duplex,id=sound0-codec0,bus=sound0.0,cad=0,audiodev=pa1 \
   -global ICH9-LPC.disable_s3=1 -global ICH9-LPC.disable_s4=1 \
   -device qemu-xhci \
   -device usb-tablet \
@@ -18,12 +18,12 @@ qemu-system-x86_64 -drive file=$img_path,format=qcow2,if=virtio \
   -machine type=q35 \
   -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_time,hv_vapic,hv_vendor_id=0xDEADBEEFFF \
   -rtc clock=host,base=localtime \
-  -m 8G \
+  -m 16G \
   -smp sockets=1,cores=6,threads=1 \
   -net nic, -net user,hostname=windows,smb=/home/xun/Workspace/qemu_conf/share \
   -vga virtio \
-  -monitor stdio \
-  -display sdl,gl=on -name "Windows 10 1709 64 bit" 
+  -onitor stdio \
+  -display sdl,gl=on -name "Windows 10 1709 64 bit" > /home/xun/Workspace/qemu_conf/log/windows.log 2>&1 &
 
 #> /home/xun/Workspace/qemu_conf/log/windows.log 2>&1 &
 
