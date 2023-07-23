@@ -72,5 +72,6 @@ while case $1 in
 	esac do true; done
 
 if [ "$#" -eq 0 ] || [ -z "$1" ]; then
+	echo 'you need to source this script'
 	set_proxy
 fi

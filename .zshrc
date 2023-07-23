@@ -8,6 +8,8 @@ export XDG_SESSION_TYPE=wayland
 export WLR_NO_HARDWARE_CURSORS=1
 export MOZ_ENABLE_WAYLAND=1
 
+set -o vi
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=5000
@@ -79,9 +81,6 @@ alias diff='diff --color=auto'
 alias cp='cp -i'
 alias mv='mv -i'
 alias ip='ip --color=auto'
-
-# cat 
-alias cat=bat
 
 alias la='ls -A'
 alias ll='ls -Al'
