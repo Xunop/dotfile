@@ -7,6 +7,13 @@ declare -A map_priv
 
 conf_file=(00_log 01_api 02_dns 03_routing 04_policy 05_inbounds 06_outbounds 07_transport 08_stats 09_reverse)
 
+# backup file
+backup() {
+  for BASE in ${conf_file[@]}; do 
+    /bin/cp "$BASE.json" "backup/$BASE.json.bak"
+  done
+}
+
 # read private info
 read_info() {
   while read line; do
@@ -102,5 +109,7 @@ parse_args() {
 
 # main
 read_info
+
+backup
 
 parse_args "$@"
