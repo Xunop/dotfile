@@ -34,6 +34,7 @@ switch() {
 
 end() {
   for node in ${nodes[@]}; do
+    #set -x
     sed -i "s/${node}/proxy-tag/g" 03_routing.json
   done
 }

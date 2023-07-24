@@ -14,7 +14,7 @@
         },
 
         {
-            "tag": "proxy-tag",
+            "tag": "xun-proxy-jp",
             "protocol": "vless",
             "settings": {
                 "vnext": [
@@ -73,6 +73,79 @@
                 }
             }
         },
+
+        
+        {
+            "tag": "z-proxy-hk",
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "z_hk_domain", // Address, domain name or IP of the server
+                        "port": 443, // Port, consistent with the server
+                        "users": [
+                            {
+                                "id": "z_hk_uuid", // User ID, consistent with the server
+                                "encryption": "none",
+                                "flow": "xtls-rprx-vision"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "reality",
+                "realitySettings": {
+                    "show": false, 
+                    "serverName": "www.ujs.edu.cn", // SNI, if "address" is filled with the domain name of the server, it can be left blank. If "address" is filled with the IP of the server, fill in the domain name contained in the certificate of the server here
+                    "publicKey": "z_hk_publicKey",
+                    "shortId": "ffffffff",
+                    "allowInsecure": false,
+                    "fingerprint": "firefox", // Used to configure the fingerprint of the specified TLS Client Hello, Xray will simulate the TLS fingerprint through the uTLS library, or generate it randomly
+                    "spiderX": "" // 爬虫初始路径与参数，建议每个客户端不同
+                },
+                "sockopt": {
+                    "mark": 2
+                }
+            }
+        },
+
+        {
+            "tag": "z-proxy-jp",
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "z_jp_domain", // Address, domain name or IP of the server
+                        "port": 443, // Port, consistent with the server
+                        "users": [
+                            {
+                                "id": "z_jp_uuid",
+                                "encryption": "none",
+                                "flow": "xtls-rprx-vision"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "reality",
+                "realitySettings": {
+                    "show": false, 
+                    "serverName": "www.ujs.edu.cn", // SNI, if "address" is filled with the domain name of the server, it can be left blank. If "address" is filled with the IP of the server, fill in the domain name contained in the certificate of the server here
+                    "publicKey": "z_jp_publicKey",
+                    "shortId": "00000000",
+                    "allowInsecure": false,
+                    "fingerprint": "firefox", // Used to configure the fingerprint of the specified TLS Client Hello, Xray will simulate the TLS fingerprint through the uTLS library, or generate it randomly
+                    "spiderX": "" // 爬虫初始路径与参数，建议每个客户端不同
+                },
+                "sockopt": {
+                    "mark": 2
+                }
+            }
+        },
         
         {
             "tag": "block",
@@ -91,7 +164,7 @@
               "address": "8.8.8.8"
             },
             "proxySettings": {
-              "tag": "proxy-jp"
+              "tag": "ming-proxy-jp"
             },
             "streamSettings": {
                 "sockopt": {
