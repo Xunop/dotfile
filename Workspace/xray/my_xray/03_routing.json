@@ -47,7 +47,7 @@
                     "domain:githubusercontent.com",
                     "domain:arm.com",
                     "domain:dns.google",
-                    "domain:openai.com"
+                    "domain:chat.openai.com"
                 ],
                 "outboundTag": "proxy-tag"
             },

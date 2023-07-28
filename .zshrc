@@ -18,6 +18,7 @@ export MOZ_ENABLE_WAYLAND=1
 # Set the keybings to vi
 set -o vi
 
+export EDITOR=nvim
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -46,6 +47,12 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 
+# Load mcfly
+# https://github.com/cantino/mcfly
+eval "$(mcfly init zsh)"
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_FUZZY=2
+
 # Load plugin
 zinit wait lucid for \
   atinit"zicompinit; zicdreplay" \
@@ -58,8 +65,8 @@ zinit wait lucid for \
 zinit ice wait"1" lucid
 zinit light lukechilds/zsh-nvm
 
-#
 
+##
 # aliases
 ## refresh packages
 alias ua-drop-caches='sudo paccache -rk3; paru -Sc --aur --noconfirm'
