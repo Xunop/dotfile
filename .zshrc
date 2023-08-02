@@ -62,6 +62,11 @@ zinit wait lucid for \
   blockf atpull'zinit creinstall -q .' \
       zsh-users/zsh-completions \
 
+# Load vi-mode
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
+# Load nvm
 zinit ice wait"1" lucid
 zinit light lukechilds/zsh-nvm
 
