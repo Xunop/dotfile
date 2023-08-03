@@ -84,7 +84,6 @@ alias ua-update-all='export TMPFILE="$(mktemp)"; \
       && paru -Syyu --noconfirm'
 
 alias sudo='sudo '
-alias vim='nvim'
 alias rm='echo "rm is disabled, use trash instead"'
 
 alias ls='lsd'
