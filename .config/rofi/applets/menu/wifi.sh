@@ -1,6 +1,6 @@
 #!/bin/sh
 
-style="$HOME/.config/rofi/applets/menu/wifi.rasi"
+style="$HOME/.config/rofi/launchers/type-4/style-1.rasi "
 rofi_command="rofi -theme $style"
 
 # Get connected WiFi
@@ -14,6 +14,15 @@ options=""
 while read -r line; do
     options="$options\n$line"
 done <<< "$wifi_list"
+
+## Convert the space-separated list into an array
+#IFS=$'\n' read -r -d '' -a wifi_array <<< "$wifi_list"
+#
+## Create rofi options string
+#options=""
+#for wifi in "${wifi_array[@]}"; do
+#    options="$options\n${wifi#*:}"  # Extract the SSID from the "SSID" format
+#done
 
 # Show rofi menu filter empty str
 chosen=$(echo -e "$options" | grep -v '^$' | $rofi_command -dmenu -i -p "Choose WiFi Network:")
@@ -32,6 +41,8 @@ if [ "$connected_wifi" = "$chosen" ]; then
         if [ "$back" != "go back" ]; then
             exit
         fi
+    else
+                exit
     fi
 fi
 
