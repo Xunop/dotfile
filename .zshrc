@@ -118,5 +118,7 @@ alias config='/usr/bin/git --git-dir=/home/xun/.cfg/ --work-tree=/home/xun/'
 # proxy
 alias proxy='source ~/.config/.script/proxy.sh'
 
+# joshuto
+alias jo='joshuto'
 
 #zprof

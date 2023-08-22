@@ -22,7 +22,8 @@
     "wlr/workspaces": {
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1",
-        "all-outputs": true,
+        "all-outputs": false,
+        "sort-by-number": true,
         "on-click": "activate",
         "format": "{icon}",
     },
