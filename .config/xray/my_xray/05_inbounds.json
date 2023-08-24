@@ -10,7 +10,10 @@
             },
             "sniffing": {
                 "enabled": true,
-                "destOverride": ["http", "tls"]
+                "destOverride": [
+                    "http",
+                    "tls"
+                ]
             },
             "streamSettings": {
                 "sockopt": {
@@ -18,10 +21,9 @@
                 }
             }
         },
-
         {
-            "listen": "127.0.0.1", // Fill in 0.0.0.0 to allow connections from LAN
-            "port": 10808, // local socks listening port
+            "listen": "127.0.0.1",
+            "port": 10808,
             "tag": "cnproxy_socks",
             "protocol": "socks",
             "settings": {
@@ -35,10 +37,9 @@
                 ]
             }
         },
-
         {
-            "listen": "127.0.0.1", // Fill in "0.0.0.0" to allow connections from LAN
-            "port": 10809, // Local http listening port
+            "listen": "127.0.0.1",
+            "port": 10809,
             "tag": "cnproxy_http",
             "protocol": "http",
             "sniffing": {

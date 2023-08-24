@@ -1,29 +1,16 @@
 {
     "outbounds": [
         {
-            "protocol": "freedom",
-            "tag": "direct",
-            "settings": {
-                "domainStrategy": "UseIPv4"
-            },
-            "streamSettings": {
-                "sockopt": {
-                    "mark": 2
-                }
-            }
-        },
-
-        {
-            "tag": "proxy-jp",
+            "tag": "xun-proxy-jp",
             "protocol": "vless",
             "settings": {
                 "vnext": [
                     {
-                        "address": "proxy_domain", // Address, domain name or IP of the server
+                        "address": "xun_jp_domain", // Address, domain name or IP of the server
                         "port": 443, // Port, consistent with the server
                         "users": [
                             {
-                                "id": "xray_uuid",
+                                "id": "xun_jp_uuid",
                                 "encryption": "none",
                                 "flow": "xtls-rprx-vision"
                             }
@@ -44,6 +31,49 @@
         },
 
         {
+            "protocol": "freedom",
+            "tag": "direct",
+            "settings": {
+                "domainStrategy": "UseIPv4"
+            },
+            "streamSettings": {
+                "sockopt": {
+                    "mark": 2
+                }
+            }
+        },
+
+        {
+            "tag": "ming-proxy-jp",
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "ming_jp_domain", // Address, domain name or IP of the server
+                        "port": 443, // Port, consistent with the server
+                        "users": [
+                            {
+                                "id": "ming_jp_uuid",
+                                "encryption": "none",
+                                "flow": "xtls-rprx-vision"
+                            }
+                        ]
+                    }
+                ]
+            },
+            
+            "streamSettings": {
+                "network": "tcp",
+                "security": "tls",
+                "tlsSettings": {
+                    "serverName": "", // SNI, if "address" is filled with the domain name of the server, it can be left blank. If "address" is filled with the IP of the server, fill in the domain name contained in the certificate of the server here
+                    "allowInsecure": false,
+                    "fingerprint": "firefox" // Used to configure the fingerprint of the specified TLS Client Hello, Xray will simulate the TLS fingerprint through the uTLS library, or generate it randomly
+                }
+            }
+        },
+        
+        {
             "tag": "block",
             "protocol": "blackhole",
             "settings": {
@@ -57,10 +87,10 @@
             "tag": "dns-out",
             "protocol": "dns",
             "settings": {
-              "address": "1.1.1.1"
+              "address": "8.8.8.8"
             },
             "proxySettings": {
-              "tag": "proxy-jp"
+              "tag": "xun-proxy-jp"
             },
             "streamSettings": {
                 "sockopt": {

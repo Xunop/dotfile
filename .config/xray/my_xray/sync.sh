@@ -7,6 +7,17 @@ declare -A map_priv
 
 conf_file=(00_log 01_api 02_dns 03_routing 04_policy 05_inbounds 06_outbounds 07_transport 08_stats 09_reverse)
 
+# backup file
+backup() {
+  for BASE in ${conf_file[@]}; do 
+    # if file not exist, create it
+    if [ ! -e "$HOME/Workspace/xray/my_xray/backup/$BASE.json" ]; then
+      echo '{}' > "$HOME/Workspace/xray/my_xray/backup/$BASE.json"
+    fi
+    /bin/cp "/etc/xray/$BASE.json" "$HOME/Workspace/xray/my_xray/backup/"
+  done
+}
+
 # read private info
 read_info() {
   while read line; do
@@ -41,7 +52,9 @@ sync_xray() {
     echo "please run as root"
     exit 1
   fi
+  
   echo "please make sure your xray run command is '/usr/bin/xray run -confdir /etc/xray"
+  sed -i "s/proxy-tag/xun-proxy-jp/g" 03_routing.json
   for BASE in ${conf_file[@]}; do 
     # if file not exist, create it
     if [ ! -e "/etc/xray/$BASE.json" ]; then
@@ -50,9 +63,11 @@ sync_xray() {
     fi
     cat "$BASE.json" > "/etc/xray/$BASE.json"
   done
+  sed -i "s/xun-proxy-jp/proxy-tag/g" 03_routing.json
   echo "done. but you need to restart xray.service"
   echo "sudo systemctl restart xray.service"
 }
+
 
 # help
 help() {
@@ -101,5 +116,7 @@ parse_args() {
 
 # main
 read_info
+
+backup
 
 parse_args "$@"
