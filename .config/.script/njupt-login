@@ -35,10 +35,11 @@ logout() {
 }
 
 # 参数解析
-while getopts ':a:p:eh' OPT; do
+while getopts ':a:p:i:eh' OPT; do
 	case $OPT in
 	a) account=$OPTARG ;;
 	p) passwd=$OPTARG ;;
+	i) isp=$OPTARG ;;
 	e) logout ;;
 	h) help ;;
 	?)

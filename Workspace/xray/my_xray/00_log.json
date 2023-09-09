@@ -1,7 +1,0 @@
-{
-    "log": {
-            "loglevel": "info",
-            "error": "/var/log/xray/error.log",
-            "access": "/var/log/xray/access.log"
-    }
-}

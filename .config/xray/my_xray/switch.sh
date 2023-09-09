@@ -39,6 +39,8 @@ end() {
   done
 }
 
+n_node=$(awk -F':' '/\-proxy-/ {print $2; exit}' /etc/xray/03_routing.json | awk '{print $1}')
+echo "Current node is ${n_node}"
 switch
 sudo ./sync.sh -s
 sudo systemctl restart xray.service

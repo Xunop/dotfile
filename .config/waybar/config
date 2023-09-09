@@ -1,7 +1,7 @@
 {
 	"layer": "top",
 	"modules-left": ["custom/launcher", "memory", "tray"],
-	"modules-center": ["wlr/workspaces"],
+	"modules-center": ["hyprland/workspaces"],
 	"modules-right": ["custom/spotify", "custom/updates", "network", "clock"],
 	
     "tray": {

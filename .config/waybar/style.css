@@ -24,6 +24,7 @@ window#waybar.hidden {
   transition: none;
   color: #161320;
 }
+
 #taskbar {
   margin-top: 6px;
   margin-left: 8px;
@@ -152,6 +153,7 @@ window#waybar.hidden {
   color: #161320;
   background: #f8bd96;
 }
+
 #clock {
   margin-top: 6px;
   margin-left: 8px;
@@ -176,6 +178,7 @@ window#waybar.hidden {
   color: #161320;
   background: #ddb6f2;
 }
+
 #cpu {
   margin-top: 6px;
   margin-left: 8px;
@@ -207,10 +210,54 @@ window#waybar.hidden {
   padding-left: 10px;
   padding-right: 5px;
   border-radius: 10px;
-  transition: none;
-  color: #89dceb;
-  background: #161320;
+  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+  /* transition: none; */
+  color: #09dceb;
+  /* background: #161320; */
+  /* background-size: 300% 300%; */
+  /* background: linear-gradient(to right, #ff4d6a, #ff9a8b); */
+  /* background-image: radial-gradient( */
+  /*   circle, */
+  /*   rgba(203, 166, 247, 1) 0%, */
+  /*   rgba(193, 168, 247, 1) 12%, */
+  /*   rgba(249, 226, 175, 1) 19%, */
+  /*   rgba(189, 169, 247, 1) 20%, */
+  /*   rgba(182, 171, 247, 1) 24%, */
+  /*   rgba(198, 255, 194, 1) 36%, */
+  /*   rgba(177, 172, 247, 1) 37%, */
+  /*   rgba(170, 173, 248, 1) 48%, */
+  /*   rgba(255, 255, 255, 1) 52%, */
+  /*   rgba(166, 174, 248, 1) 52%, */
+  /*   rgba(160, 175, 248, 1) 59%, */
+  /*   rgba(148, 226, 213, 1) 66%, */
+  /*   rgba(155, 176, 248, 1) 67%, */
+  /*   rgba(152, 177, 248, 1) 68%, */
+  /*   rgba(205, 214, 244, 1) 77%, */
+  /*   rgba(148, 178, 249, 1) 78%, */
+  /*   rgba(144, 179, 250, 1) 82%, */
+  /*   rgba(180, 190, 254, 1) 83%, */
+  /*   rgba(141, 179, 250, 1) 90%, */
+  /*   rgba(137, 180, 250, 1) 100% */
+  /* ); */
+  /* animation: movement 40s linear infinite; */
+  /* animation-direction: alternate; */
 }
+
+@keyframes movement {
+  0% {
+    background-position: 0% 180%;
+  }
+  50% {
+    background-position: 180% 0%;
+  }
+  100% {
+    background-position: 300% 181%;
+  }
+}
+
+/* #custom-launcher:hover { */
+/*   -gtk-icon-transform: rotate(1turn); */
+/* } */
 
 #custom-power {
   font-size: 20px;
@@ -237,6 +284,7 @@ window#waybar.hidden {
   color: #161320;
   background: #c9cbff;
 }
+
 #custom-spotify {
   margin-top: 6px;
   margin-left: 8px;

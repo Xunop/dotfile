@@ -11,10 +11,10 @@ conf_file=(00_log 01_api 02_dns 03_routing 04_policy 05_inbounds 06_outbounds 07
 backup() {
   for BASE in ${conf_file[@]}; do 
     # if file not exist, create it
-    if [ ! -e "$HOME/Workspace/xray/my_xray/backup/$BASE.json" ]; then
-      echo '{}' > "$HOME/Workspace/xray/my_xray/backup/$BASE.json"
+    if [ ! -e "/home/xun/.config/xray/my_xray/backup/$BASE.json" ]; then
+      echo '{}' > "/home/xun/.config/xray/my_xray/backup/$BASE.json"
     fi
-    /bin/cp "/etc/xray/$BASE.json" "$HOME/Workspace/xray/my_xray/backup/"
+    /bin/cp "/etc/xray/$BASE.json" "/home/xun/.config/xray/my_xray/backup/"
   done
 }
 
