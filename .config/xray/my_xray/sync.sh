@@ -7,8 +7,8 @@ declare -A map_priv
 
 conf_dir="/home/xun/.config/xray/my_xray/"
 back_dir="${conf_dir}backup/"
-private="${dir}private"
-routing="${dir}03_routing.json"
+private="${conf_dir}private"
+routing="${conf_dir}03_routing.json"
 
 file=(00_log 01_api 02_dns 03_routing 04_policy 05_inbounds 06_outbounds 07_transport 08_stats 09_reverse)
 declare -A conf_file
