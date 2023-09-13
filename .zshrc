@@ -46,12 +46,10 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-
 # Load mcfly
 # https://github.com/cantino/mcfly
-eval "$(mcfly init zsh)"
-export MCFLY_KEY_SCHEME=vim
-export MCFLY_FUZZY=2
+zinit ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"'
+zinit light cantino/mcfly
 
 # Load plugin
 zinit wait lucid for \
@@ -83,7 +81,6 @@ alias ua-update-all='export TMPFILE="$(mktemp)"; \
       && ua-drop-caches \
       && paru -Syyu --noconfirm'
 
-alias sudo='sudo '
 alias rm='echo "rm is disabled, use trash instead"'
 
 alias ls='lsd'
@@ -120,5 +117,11 @@ alias proxy='source ~/.config/.script/proxy.sh'
 
 # joshuto
 alias jo='joshuto'
+
+# systemctl
+alias sc='systemctl'
+alias scs='systemctl status'
+alias sss='sudo systemctl start'
+alias ssr='sudo systemctl restart'
 
 #zprof
