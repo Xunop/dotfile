@@ -9,5 +9,6 @@ partial modifier_keys
 xkb_symbols "casp_esc" {
     key <CAPS> { [ Super_L, Super_L ] };
     key <LWIN> { [ Escape, Escape ] };
+    key <RTSH> { [ Escape, Escape ] };
 };
 

@@ -76,6 +76,7 @@ sync_xray() {
       echo '{}' > ${xray_file[$BASE]}
     fi
     cat ${conf_file[$BASE]} > ${xray_file[$BASE]}
+    echo "${conf_file[$BASE]} to ${xray_file[$BASE]}"
   done
   sed -i "s/xun-proxy-jp/proxy-tag/g" ${conf_dir}03_routing.json
   echo "done. but you need to restart xray.service"

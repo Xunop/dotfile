@@ -1,6 +1,55 @@
 {
         "outbounds": [
                 {
+                        "tag": "z-proxy-jp",
+                        "protocol": "vless",
+                        "settings": {
+                                "vnext": [
+                                        {
+                                                "address": "z_jp_domain",
+                                                "port": 443,
+                                                "users": [
+                                                        {
+                                                                "id": "z_jp_uuid",
+                                                                "encryption": "none",
+                                                                "flow": "xtls-rprx-vision"
+                                                        }
+                                                ]
+                                        }
+                                ],
+                                "domainStrategy": "UseIPv4"
+                        },
+                        "streamSettings": {
+                                "network": "tcp",
+                                "security": "reality",
+                                "realitySettings": {
+                                        "show": false,
+                                        "serverName": "idolmaster-official.jp",
+                                        // "serverName": "www.ujs.edu.cn",
+                                        "publicKey": "z_jp_publicKey",
+                                        "shortId": "00000000",
+                                        "allowInsecure": false,
+                                        "fingerprint": "firefox",
+                                        "spiderX": ""
+                                },
+                                "sockopt": {
+                                        "mark": 2
+                                }
+                        }
+                },
+                {
+                        "tag": "direct",
+                        "protocol": "freedom",
+                        "settings": {
+                                "domainStrategy": "UseIPv4"
+                        },
+                        "streamSettings": {
+                                "sockopt": {
+                                        "mark": 2
+                                }
+                        }
+                },
+                {
                         "tag": "xun-proxy-jp",
                         "protocol": "vless",
                         "settings": {
@@ -25,18 +74,6 @@
                                         "serverName": "",
                                         "allowInsecure": false,
                                         "fingerprint": "firefox"
-                                }
-                        }
-                },
-                {
-                        "tag": "direct",
-                        "protocol": "freedom",
-                        "settings": {
-                                "domainStrategy": "UseIPv4"
-                        },
-                        "streamSettings": {
-                                "sockopt": {
-                                        "mark": 2
                                 }
                         }
                 },
@@ -80,7 +117,7 @@
                                                         {
                                                                 "id": "z_hk_uuid",
                                                                 "encryption": "none",
-                                                                "flow": ""
+                                                                "flow": "xtls-rprx-vision"
                                                         }
                                                 ]
                                         }
@@ -88,51 +125,14 @@
                                 "domainStrategy": "UseIPv4"
                         },
                         "streamSettings": {
-                                "network": "h2",
+                                "network": "tcp",
                                 "security": "reality",
                                 "realitySettings": {
                                         "show": false,
-                                        // "serverName": "idolmaster-official.jp",
-                                        "serverName": "www.ujs.edu.cn",
+                                        "serverName": "idolmaster-official.jp",
+                                        // "serverName": "www.ujs.edu.cn",
                                         "publicKey": "z_hk_publicKey",
                                         "shortId": "ffffffff",
-                                        "allowInsecure": false,
-                                        "fingerprint": "firefox",
-                                        "spiderX": ""
-                                },
-                                "sockopt": {
-                                        "mark": 2
-                                }
-                        }
-                },
-                {
-                        "tag": "z-proxy-jp",
-                        "protocol": "vless",
-                        "settings": {
-                                "vnext": [
-                                        {
-                                                "address": "z_jp_domain",
-                                                "port": 443,
-                                                "users": [
-                                                        {
-                                                                "id": "z_jp_uuid",
-                                                                "encryption": "none",
-                                                                "flow": ""
-                                                        }
-                                                ]
-                                        }
-                                ],
-                                "domainStrategy": "UseIPv4"
-                        },
-                        "streamSettings": {
-                                "network": "h2",
-                                "security": "reality",
-                                "realitySettings": {
-                                        "show": false,
-                                        // "serverName": "idolmaster-official.jp",
-                                        "serverName": "www.ujs.edu.cn",
-                                        "publicKey": "z_jp_publicKey",
-                                        "shortId": "00000000",
                                         "allowInsecure": false,
                                         "fingerprint": "firefox",
                                         "spiderX": ""

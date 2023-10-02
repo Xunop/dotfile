@@ -2,16 +2,30 @@
 
 cd ~
 
+# XDG
 export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=Hyprland
 export XDG_SESSION_DESKTOP=Hyprland
+
+# fix cursor not working in nvidia
 export WLR_NO_HARDWARE_CURSORS=1
 
+# SDL wayland support
 export SDL_VIDEODRIVER=wayland
-export MOZ_ENABLE_WAYLAND=1
+
+# GTK theme
 export GTK_THEME=Catppuccin-blue:dark
+
+# Fcitx
 export XMODIFIERS="@im=fcitx"
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
+
+# intel vaapi
+export LIBVA_DRIVER_NAME=iHD
+
+# enbale wayland for firefox
+export MOZ_ENABLE_WAYLAND=1
+
 mkdir -p /tmp/hypr/log
 exec Hyprland > /tmp/hypr/log/logs.log 2>&1

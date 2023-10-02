@@ -21,6 +21,22 @@
             },
             {
                 "type": "field",
+                "domain": [
+                    "geosite:cn",
+                    "geosite:private"
+                ],
+                "outboundTag": "direct"
+            },
+            {
+                "type": "field",
+                "ip": [
+                    "geoip:cn",
+                    "geoip:private"
+                ],
+                "outboundTag": "direct"
+            },
+            {
+                "type": "field",
                 "protocol": [
                     "bittorrent"
                 ],
@@ -47,7 +63,9 @@
                     "domain:githubusercontent.com",
                     "domain:arm.com",
                     "domain:dns.google",
-                    "domain:chat.openai.com"
+                    "domain:chat.openai.com",
+                    "domain:duckduckgo.com",
+                    "domain:github.com"
                 ],
                 "outboundTag": "proxy-tag"
             },
@@ -65,22 +83,6 @@
                     "geoip:fastly"
                 ],
                 "outboundTag": "proxy-tag"
-            },
-            {
-                "type": "field",
-                "domain": [
-                    "geosite:cn",
-                    "geosite:private"
-                ],
-                "outboundTag": "direct"
-            },
-            {
-                "type": "field",
-                "ip": [
-                    "geoip:cn",
-                    "geoip:private"
-                ],
-                "outboundTag": "direct"
             }
         ]
     }

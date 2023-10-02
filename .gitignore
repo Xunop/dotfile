@@ -12,6 +12,7 @@ luna_pinyin_simp.userdb/*
 .gmailpass.gpg
 .local/share/fcitx5/rime/build/*
 .local/share/fcitx5/rime/user.yaml
+.local/share/fcitx5/rime/installation.yaml
 uassh
 private
 z_xray

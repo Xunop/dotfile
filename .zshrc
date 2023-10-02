@@ -4,16 +4,12 @@ export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.config/.script:$PAT
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export HISTFILE="$HOME/.zsh_history"
-export LIBVA_DRIVER_NAME=radeons
+
 # Number of events loaded into memory
 export HISTSIZE=10000
 
 # Number of events stored in the zsh history file
 export SAVEHIST=10000
-
-export XDG_SESSION_TYPE=wayland
-export WLR_NO_HARDWARE_CURSORS=1
-export MOZ_ENABLE_WAYLAND=1
 
 # Set the keybings to vi
 set -o vi
@@ -81,7 +77,7 @@ alias ua-update-all='export TMPFILE="$(mktemp)"; \
       && ua-drop-caches \
       && paru -Syyu --noconfirm'
 
-alias rm='echo "rm is disabled, use trash instead"'
+alias rm='sl -5 -a -d -e -w'
 
 alias ls='lsd'
 alias l='ls -l'
@@ -123,5 +119,9 @@ alias sc='systemctl'
 alias scs='systemctl status'
 alias sss='sudo systemctl start'
 alias ssr='sudo systemctl restart'
+
+# nmcli
+alias nmwc='nmcli dev wifi connect'
+alias nmwl='nmcli dev wifi list'
 
 #zprof
