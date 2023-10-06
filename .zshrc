@@ -61,7 +61,7 @@ zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 
 # Load nvm
-zinit ice wait"1" lucid
+zinit ice wait"3" lucid
 zinit light lukechilds/zsh-nvm
 
 
