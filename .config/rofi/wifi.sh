@@ -1,6 +1,6 @@
 #!/bin/sh
 
-style="$HOME/.config/rofi/launchers/type-4/style-1.rasi "
+style="$HOME/.config/rofi/clipboard.rasi "
 rofi_command="rofi -theme $style"
 
 # Get connected WiFi
