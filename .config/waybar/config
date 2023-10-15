@@ -2,7 +2,7 @@
 	"layer": "top",
 	"modules-left": ["custom/launcher", "memory", "tray"],
 	"modules-center": ["hyprland/workspaces"],
-	"modules-right": ["custom/spotify", "custom/updates", "network", "clock"],
+	"modules-right": ["custom/yubikey", "custom/spotify", "custom/updates", "network", "clock"],
 	
     "tray": {
         "icon-size": 18,
@@ -87,6 +87,10 @@
         "interval": 30,
         "format": " {}%",
         "max-length": 10
+    },
+    "custom/yubikey": {
+        "exec": "$HOME/.config/waybar/waybar-yubikey",
+        "return-type": "json"
     },
     "custom/launcher":{
         "format": " ",

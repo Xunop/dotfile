@@ -296,3 +296,8 @@ window#waybar.hidden {
   color: #1a1826;
   background: #f28fad;
 }
+
+#custom-yubikey {
+    margin-top: 6px;
+    background: #ff4d6a;
+}
