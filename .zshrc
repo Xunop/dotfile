@@ -67,7 +67,7 @@ zinit light lukechilds/zsh-nvm
 
 # gpg-agent
 # see .zshenv
-export GPG_TTY=${TTY}
+export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 

@@ -1,12 +1,12 @@
 #!/bin/sh
 
 img_path=/home/xun/Workspace/qemu_conf/qemu_img/WindowsVM.img
-iso=/home/xun/Workspace/qemu_conf/iso/cn_windows_10_multi-edition_vl_version_1709_updated_dec_2017_x64_dvd_100406208.iso
-vi_iso=/home/xun/Workspace/qemu_conf/iso/virtio-win-0.1.229.iso
+#iso=/home/xun/Workspace/qemu_conf/iso/cn_windows_10_multi-edition_vl_version_1709_updated_dec_2017_x64_dvd_100406208.iso
+#vi_iso=/home/xun/Workspace/qemu_conf/iso/virtio-win-0.1.229.iso
 
+  # -drive file=$iso,media=cdrom \
+  # -drive file=$vi_iso,media=cdrom \
 qemu-system-x86_64 -drive file=$img_path,format=qcow2,if=virtio \
-  -drive file=$iso,media=cdrom \
-  -drive file=$vi_iso,media=cdrom \
   -boot order=d \
   -audiodev pa,id=pa1 \
   -device ich9-intel-hda,id=sound0,bus=pcie.0,addr=0x1b \
