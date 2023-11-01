@@ -1,0 +1,70 @@
+#!/bin/sh
+
+style="$HOME/.config/rofi/clipboard.rasi"
+rofi_command="rofi -theme $style"
+
+current_workspace=$(hyprctl activeworkspace | head -n1 | awk '{print $3}')
+# current_window=$(hyprctl activewindow | head -n1 | awk '{print $2}')
+
+# clients=$(hyprctl -j clients | jq ".[] | select(.workspace.id==$current_workspace)")
+clients=$(hyprctl -j clients | jq '.[] | select (.workspace.id >= 1)')
+
+infos=$(echo $clients | jq '.workspace.id, .title, .class')
+
+windows=()
+count=0
+workspace_id=""
+class=""
+title=""
+while read -r info; do
+    if [[ `expr $count % 3` == 0 ]]; then
+        workspace_id=$info
+        # echo workspace_id: $workspace_id
+    elif [[ `expr $count % 3` == 1 ]]; then
+        title=$info
+        # echo title: $title
+    else
+        class=$info
+        if [[ $class == \"\" && $title == \"\" ]]; then
+            count=`expr $count + 1`
+            continue
+        fi
+        # echo "$workspace_id"---"$title"---"$class"
+        windows+=("$workspace_id"---"$title"---"$class")
+        # echo class: $class
+    fi
+    count=`expr $count + 1`
+done <<< "$infos"
+
+echo "current workspace: $current_workspace"
+
+sorted_windows=()
+for window in "${windows[@]}"; do
+    workspace_id=$(echo $window | awk -F'---' '{print $1}')
+    if [[ $workspace_id == $current_workspace ]]; then
+        sorted_windows=("$window" "${sorted_windows[@]}")
+    else
+        sorted_windows+=("$window")
+    fi
+done
+#echo "sorted windows: ${sorted_windows[@]}"
+
+options=""
+for window in "${sorted_windows[@]}"; do
+    options+="$window\n"
+done
+
+chosen=$(echo -e "$options" | tr -s '\n' | rofi -dmenu -theme $style -dmenu -i -p "Choose window")
+
+if [ -z "$chosen" ]; then
+    exit
+fi
+
+# get title
+chosen=$(echo $chosen | awk -F'---' '{print $2}')
+pkill rofi
+
+chosen=$(hyprctl -j clients | jq ".[] | select(.title==$chosen).address")
+chosen=${chosen//\"/}
+echo "chosen: $chosen"
+hyprctl dispatch focuswindow address:$chosen

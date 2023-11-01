@@ -1,0 +1,6 @@
+#!/bin/sh
+
+app=$(rofi)
+pkill rofi || rofi -show drun -theme ~/.config/rofi/launcher.rasi &
+sleep 1
+~/.config/hypr/scripts/tile-active-workspace

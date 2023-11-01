@@ -1,0 +1,5 @@
+#!/bin/sh
+
+alacritty &
+sleep 0.5
+~/.config/hypr/scripts/smart-tile/tile-active-workspace

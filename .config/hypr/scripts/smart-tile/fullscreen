@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+floating=$(hyprctl -j activewindow | jq '.floating')
+echo $floating
+if [ $floating = false ]; then
+ hyprctl dispatch fullscreen >/dev/null
+ exit
+fi
+tmpdir=$(dirname "$0")/tmp/fullscreen-old-workspace
+
+isfullscreen=$(hyprctl -j activewindow | jq '.fullscreen')
+
+active=$(hyprctl activewindow | head -n1 | cut -d' ' -f2)
+old_position=$(hyprctl -j activewindow | jq '.at, .size | .[0], .[1]' | awk 'NR%2{printf $0" ";next;}1')
+position=$(echo $old_position | awk '{print $1, $2}')
+size=$(echo $old_position | awk '{print $3, $4}')
+
+#echo $position > "$tmpdir/$active"
+#echo $size >> "$tmpdir/$active"
+
+# If the window is already fullscreen, just move it back to the old workspace
+if [ $isfullscreen = true ]; then
+  hyprctl dispatch fullscreen >/dev/null
+  if [ -f "$tmpdir/$active" ]; then
+    old_workspace=$(cat "$tmpdir/$active" | head -n1)
+    hyprctl dispatch movetoworkspace "$old_workspace" >/dev/null
+    old_position=$(cat "$tmpdir/$active" | sed -n '2p')
+    old_size=$(cat "$tmpdir/$active" | sed -n '3p')
+    rm "$tmpdir/$active"
+    sleep 0.5
+    # recover old position
+    hyprctl dispatch movewindowpixel exact "$old_position",address:"0x$active"
+    #python ~/.config/hypr/scripts/smart-tile/smart-tile.py "$old_workspace"
+  fi
+  exit
+fi
+
+current_workspace=$(hyprctl activeworkspace | grep 'workspace ID' | head -n1 | awk '{print $3}')
+workspaces=$(hyprctl clients | grep workspace: | awk '{print $2}' | grep -v '\-1')
+
+# Keep old workspace in a file
+echo "$current_workspace" >> "$tmpdir/$active"
+echo "$position" >> "$tmpdir/$active"
+echo "$size" >> "$tmpdir/$active"
+echo "$tmpdir/$active"
+
+count=0
+
+for workspace in $workspaces; do
+  if [ "$workspace" -eq "$current_workspace" ]; then
+    count=$((count + 1))
+  fi
+done
+
+if [ $count -gt 1 ]; then
+  # for i in $(seq 1 10); do
+    # if ! echo "$workspaces" | grep -w -q "$i"; then
+    #   hyprctl dispatch movetoworkspace "$i" >/dev/null
+  hyprctl dispatch fullscreen >/dev/null
+  hyprctl dispatch movetoworkspace empty >/dev/null
+  sleep 0.5
+  echo $current_workspace
+  python ~/.config/hypr/scripts/smart-tile/smart-tile.py "$current_workspace"
+  echo tiled
+  exit
+      # exit
+    # fi
+  # done
+fi
+
+hyprctl dispatch fullscreen >/dev/null
