@@ -18,8 +18,8 @@ export GTK_THEME=Catppuccin-blue:dark
 
 # Fcitx
 export XMODIFIERS="@im=fcitx"
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
+#export GTK_IM_MODULE=wayland
+#export QT_IM_MODULE=wayland
 
 # intel vaapi
 export LIBVA_DRIVER_NAME=iHD

@@ -76,7 +76,9 @@
 		"spacing": 10
 	},
     "clock": {
-        "format": "{: %H:%M  %Y/%m/%d}"
+        // "format": "{ :%H:%M  %Y:%m:%d}"
+        "format": " {:%H:%M}",
+        "format-alt": "{:%A, %B %d, %Y (%R)}  "
     },
     "cpu": {
         "interval": 15,
