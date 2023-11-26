@@ -28,4 +28,4 @@ export LIBVA_DRIVER_NAME=iHD
 export MOZ_ENABLE_WAYLAND=1
 
 mkdir -p /tmp/hypr/log
-exec Hyprland > /tmp/hypr/log/logs.log 2>&1
+exec Hyprland

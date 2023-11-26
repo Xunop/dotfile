@@ -48,6 +48,7 @@ zinit light-mode for \
 # https://github.com/cantino/mcfly
 zinit ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"'
 zinit light cantino/mcfly
+# zinit bindmap
 
 # Load plugin
 zinit wait lucid for \
@@ -63,7 +64,7 @@ zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 
 # Load nvm
-zinit ice wait"3" lucid
+zinit ice wait"0b" lucid
 zinit light lukechilds/zsh-nvm
 
 # gpg-agent
@@ -75,7 +76,7 @@ gpgconf --launch gpg-agent
 # set-proxy
 set_proxy() {
 	proxy_server="http://127.0.0.1:10809"
-    no_proxy="localhost,127.0.0.1,.local"
+        no_proxy="localhost,127.0.0.1,.local"
 	export http_proxy="$proxy_server"
 	export https_proxy="$proxy_server"
 	#export ftp_proxy="$proxy_server"

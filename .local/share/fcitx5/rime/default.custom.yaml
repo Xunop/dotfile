@@ -1,8 +1,7 @@
 patch:
+  __include: rime_ice_suggestion:/
   "switcher/hotkeys":
     - "Control+grave"
-  schema_list:
-    - schema: luna_pinyin_simp
   "style":
     "font_point": 14
   "menu/page_size": 8
@@ -13,5 +12,5 @@ patch:
     bindings:
       - { accept: "Control+space", toggle: ascii_mode, when: always }
       - { accept: "Tab", send: Down, when: composing }
-      - { accept: "bracketleft", send: Page_Up, when: paging }
-      - { accept: "bracketright", send: Page_Down, when: has_menu }
+      - { when: paging, accept: comma, send: Page_Up }
+      - { when: has_menu, accept: period, send: Page_Down }
