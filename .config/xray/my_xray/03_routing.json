@@ -15,7 +15,8 @@
                 "ip": [
                     "233.5.5.5",
                     "119.29.29.29",
-                    "private_ip1"
+                    "private_ip1",
+                    "private_ip2"
                 ],
                 "outboundTag": "direct"
             },
@@ -23,7 +24,9 @@
                 "type": "field",
                 "domain": [
                     "geosite:cn",
-                    "geosite:private"
+                    "geosite:private",
+                    "archriscv.felixc.at",
+                    "private_domain2"
                 ],
                 "outboundTag": "direct"
             },

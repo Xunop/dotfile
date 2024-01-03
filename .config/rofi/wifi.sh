@@ -55,3 +55,5 @@ else
     # Connect to chosen network without password
     nmcli dev wifi connect "$chosen"
 fi
+
+[[ "$chosen" = "NJUPT" || "$chosen" = "NJUPT-CMCC" ]] && ualogin

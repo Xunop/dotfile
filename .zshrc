@@ -1,7 +1,7 @@
 # zmodload zsh/zprof
 # time zsh -i -c "print -n"
 # Created by newuser for 5.9
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.config/.script:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.config/.script:$HOME/Workspace/riscv/scripts:$PATH
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export HISTFILE="$HOME/.zsh_history"
@@ -92,9 +92,10 @@ set_proxy() {
 	export no_proxy="$no_proxy"
 	export NO_PROXY="$no_proxy"
 
-	echo "proxy start."
-	echo "proxy server: $proxy_server"
+	# echo "proxy start."
+	# echo "proxy server: $proxy_server"
 }
+set_proxy
 
 ##
 # aliases
@@ -150,9 +151,14 @@ alias sc='systemctl'
 alias scs='systemctl status'
 alias sss='sudo systemctl start'
 alias ssr='sudo systemctl restart'
+alias ssc='sudo systemctl stop'
 
 # nmcli
 alias nmwc='nmcli dev wifi connect'
 alias nmwl='nmcli dev wifi list'
+
+# riscv package
+alias rvbuild='rvbuild.sh -C $(mktemp -d -t '\''riscv_cache_XXX'\'') -d'
+#alias rvbuild2='rvbuild.sh -C $(mktemp -d -t '\''riscv_cache_XXX'\'') -d'
 
 # zprof

@@ -1,6 +1,43 @@
 {
         "outbounds": [
                 {
+                        "tag": "h-proxy-jp",
+                        "protocol": "vless",
+                        "settings": {
+                                "vnext": [
+                                        {
+                                                "address": "h_jp_domain",
+                                                "port": 443,
+                                                "users": [
+                                                        {
+                                                                "id": "h_jp_uuid",
+                                                                "encryption": "none",
+                                                                "flow": "xtls-rprx-vision"
+                                                        }
+                                                ]
+                                        }
+                                ],
+                                "domainStrategy": "UseIPv4"
+                        },
+                        "streamSettings": {
+                                "network": "tcp",
+                                "security": "reality",
+                                "realitySettings": {
+                                        "show": false,
+                                        "serverName": "idolmaster-official.jp",
+                                        // "serverName": "www.ujs.edu.cn",
+                                        "publicKey": "h_jp_publicKey",
+                                        "shortId": "ffffffff",
+                                        "allowInsecure": false,
+                                        "fingerprint": "firefox",
+                                        "spiderX": ""
+                                },
+                                "sockopt": {
+                                        "mark": 2
+                                }
+                        }
+                },
+                {
                         "tag": "z-proxy-jp",
                         "protocol": "vless",
                         "settings": {
@@ -132,43 +169,6 @@
                                         "serverName": "idolmaster-official.jp",
                                         // "serverName": "www.ujs.edu.cn",
                                         "publicKey": "z_hk_publicKey",
-                                        "shortId": "ffffffff",
-                                        "allowInsecure": false,
-                                        "fingerprint": "firefox",
-                                        "spiderX": ""
-                                },
-                                "sockopt": {
-                                        "mark": 2
-                                }
-                        }
-                },
-                {
-                        "tag": "h-proxy-jp",
-                        "protocol": "vless",
-                        "settings": {
-                                "vnext": [
-                                        {
-                                                "address": "h_jp_domain",
-                                                "port": 443,
-                                                "users": [
-                                                        {
-                                                                "id": "h_jp_uuid",
-                                                                "encryption": "none",
-                                                                "flow": "xtls-rprx-vision"
-                                                        }
-                                                ]
-                                        }
-                                ],
-                                "domainStrategy": "UseIPv4"
-                        },
-                        "streamSettings": {
-                                "network": "tcp",
-                                "security": "reality",
-                                "realitySettings": {
-                                        "show": false,
-                                        "serverName": "idolmaster-official.jp",
-                                        // "serverName": "www.ujs.edu.cn",
-                                        "publicKey": "h_jp_publicKey",
                                         "shortId": "ffffffff",
                                         "allowInsecure": false,
                                         "fingerprint": "firefox",
