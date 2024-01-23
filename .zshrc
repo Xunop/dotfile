@@ -75,25 +75,24 @@ gpgconf --launch gpg-agent
 
 # set-proxy
 set_proxy() {
-	proxy_server="http://127.0.0.1:10809"
-        no_proxy="localhost,127.0.0.1,.local"
-	export http_proxy="$proxy_server"
-	export https_proxy="$proxy_server"
-	#export ftp_proxy="$proxy_server"
-	#export rsync_proxy="$proxy_server"
-	export all_proxy="$proxy_server"
-	export HTTP_PROXY="$proxy_server"
-	export HTTPS_PROXY="$proxy_server"
-	#export FTP_PROXY="$proxy_server"
-	#export RSYNC_PROXY="$proxy_server"
-	export ALL_PROXY="$proxy_server"
+  proxy_server="http://127.0.0.1:10809"
+  no_proxy="localhost,127.0.0.1,.local"
+  export http_proxy="$proxy_server"
+  export https_proxy="$proxy_server"
+  #export ftp_proxy="$proxy_server"
+  #export rsync_proxy="$proxy_server"
+  export all_proxy="$proxy_server"
+  export HTTP_PROXY="$proxy_server"
+  export HTTPS_PROXY="$proxy_server"
+  #export FTP_PROXY="$proxy_server"
+  #export RSYNC_PROXY="$proxy_server"
+  export ALL_PROXY="$proxy_server"
 
-	# 设置不需要使用代理的主机或域名
-	export no_proxy="$no_proxy"
-	export NO_PROXY="$no_proxy"
+  export no_proxy="$no_proxy"
+  export NO_PROXY="$no_proxy"
 
-	# echo "proxy start."
-	# echo "proxy server: $proxy_server"
+  # echo "proxy start."
+  # echo "proxy server: $proxy_server"
 }
 set_proxy
 

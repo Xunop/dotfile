@@ -1,6 +1,34 @@
 {
         "outbounds": [
                 {
+                        "tag": "xun-proxy-jp",
+                        "protocol": "vless",
+                        "settings": {
+                                "vnext": [
+                                        {
+                                                "address": "xun_jp_domain",
+                                                "port": 443,
+                                                "users": [
+                                                        {
+                                                                "id": "xun_jp_uuid",
+                                                                "encryption": "none",
+                                                                "flow": "xtls-rprx-vision"
+                                                        }
+                                                ]
+                                        }
+                                ]
+                        },
+                        "streamSettings": {
+                                "network": "tcp",
+                                "security": "tls",
+                                "tlsSettings": {
+                                        "serverName": "",
+                                        "allowInsecure": false,
+                                        "fingerprint": "firefox"
+                                }
+                        }
+                },
+                {
                         "tag": "h-proxy-jp",
                         "protocol": "vless",
                         "settings": {
@@ -83,34 +111,6 @@
                         "streamSettings": {
                                 "sockopt": {
                                         "mark": 2
-                                }
-                        }
-                },
-                {
-                        "tag": "xun-proxy-jp",
-                        "protocol": "vless",
-                        "settings": {
-                                "vnext": [
-                                        {
-                                                "address": "xun_jp_domain",
-                                                "port": 443,
-                                                "users": [
-                                                        {
-                                                                "id": "xun_jp_uuid",
-                                                                "encryption": "none",
-                                                                "flow": "xtls-rprx-vision"
-                                                        }
-                                                ]
-                                        }
-                                ]
-                        },
-                        "streamSettings": {
-                                "network": "tcp",
-                                "security": "tls",
-                                "tlsSettings": {
-                                        "serverName": "",
-                                        "allowInsecure": false,
-                                        "fingerprint": "firefox"
                                 }
                         }
                 },
