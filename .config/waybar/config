@@ -1,7 +1,7 @@
 {
 	"layer": "top",
-	"modules-left": ["custom/launcher", "memory", "tray"],
-	"modules-center": ["hyprland/workspaces"],
+	"modules-left": ["hyprland/workspaces", "custom/launcher", "memory", "tray"],
+	"modules-center": ["hyprland/window"],
 	"modules-right": ["custom/yubikey", "custom/spotify", "custom/updates", "network", "clock"],
 	
     "tray": {
@@ -115,6 +115,23 @@
         "interval": 30, // Remove this if your script is endless and write in loop
         "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null", // Script in resources folder
         "exec-if": "pgrep spotify",
-        "on-click": "playerctl play-pause"
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next --player spotify",
+        "on-click-middle": "playerctl previous --player spotify",
+    },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "on-click": "activate",
+      "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": "",
+        "urgent": "",
+        "active": "",
+        "default": ""
+      },
+      "sort-by-number": true
     }
 }

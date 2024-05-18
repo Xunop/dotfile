@@ -1,0 +1,129 @@
+#!/bin/sh
+
+# 仙林校区
+wlanacip="10.255.252.150"
+
+wlanacname="XL-BRAS-SR8806-X"
+
+account=""
+passwd=""
+
+# 获取ip
+ip=$(ip route | awk '/default/ { print $9 }')
+# 获取运营商
+isp=$(nmcli -t -f ACTIVE,SSID dev wifi | grep yes | cut -d: -f2)
+
+help() {
+	echo "Usage: ./your_script.sh [options]"
+	echo ""
+	echo "Options:"
+	echo "  -h, --help          Display help message"
+	echo "  -a, --account       Specify the account"
+	echo "  -p, --passwd        Specify the password"
+	echo "  -e,                 Logout from campus network"
+	echo ""
+	echo "Examples:"
+	echo "  ./your_script.sh -a your_account -p your_password"
+	echo "  ./your_script.sh -e"
+}
+
+logout() {
+	curl "https://p.njupt.edu.cn:802/eportal/portal/logout?callback=dr1003&login_method=1&user_account=drcom&user_password=123&ac_logout=1&register_mode=1&wlan_user_ip=${wlanacip}&wlan_user_ipv6=&wlan_vlan_id=0&wlan_user_mac=000000000000&wlan_ac_ip=&wlan_ac_name=&jsVersion=4.1.3&v=4500&lang=en"
+	#curl "http://p.njupt.edu.cn:802/eportal/logout&a=Logout&wlanuserip=${ip}&wlanacip=${wlanacip}0&wlanacname=${wlanacname}&hostname=10.10.244.11&queryACIP=0"
+	printf "log off\n"
+	exit 0
+}
+
+# 参数解析
+while getopts ':a:p:i:eh' OPT; do
+	case $OPT in
+	a) account=$OPTARG ;;
+	p) passwd=$OPTARG ;;
+	i) isp=$OPTARG ;;
+	e) logout ;;
+	h) help ;;
+	?)
+		help
+		exit 1
+		;;
+	esac
+done
+
+# 移动到下一个参数
+shift $(($OPTIND - 1))
+# 检测必须参数是否为空
+if [ -z "$account" ]; then
+	echo "Missing required argument: -a" >&2
+	exit 1
+fi
+
+if [ -z "$passwd" ]; then
+	echo "Missing required argument: -p" >&2
+	exit 1
+fi
+# 校园网自动登录
+if [ "$isp" = "NJUPT-CHINANET" -o "$isp" = "NJUPT-CMCC" -o "$isp" = "NJUPT" ]; then
+
+	if [ "$isp" = "NJUPT-CHINANET" ]; then
+		printf "CHINANET\n"
+		login="${account}@njxy"
+	elif [ "$isp" = "NJUPT-CMCC" ]; then
+		printf "CMCC\n"
+		login="${account}@cmcc"
+	elif [ "$isp" = "NJUPT" ]; then
+		printf "NJUPT\n"
+		login="${account}"
+	else
+		printf "无法识别运营商\n"
+		exit 0
+	fi
+else
+	echo "connected to $isp"
+	exit 0
+fi
+
+
+login() {
+	
+#	curl "http://10.10.244.11:801/eportal/?c=ACSetting&a=Login&protocol=http:&hostname=10.10.244.11&iTermType=1&wlanuserip=${ip}&wlanacip=${wlanacip}&wlanacname=${wlanacname}&mac=00-00-00-00-00-00&ip=${ip}&enAdvert=0&queryACIP=0&loginMethod=1" \
+#		--data "DDDDD=${login}&upass=${passwd}&R1=0&R2=0&R3=0&R6=0&para=00&0MKKey=123456&buttonClicked=&redirect_url=&err_flag=&username=&password=&user=&cmd=&Login=&v6ip="
+	
+  #set -x
+  output=$(curl -s "https://p.njupt.edu.cn:802/eportal/portal/login?callback=dr1003&login_method=1&user_account=,0,${login}&user_password=${passwd}&wlan_user_ip=&wlan_user_ipv6=&wlan_user_mac=000000000000&wlan_ac_ip=&wlan_ac_name=&jsVersion=4.1.3&terminal_type=1&lang=en&lang=en&v=3727")
+  # 提取JSON字段result、msg和ret_code的值
+  result=$(echo $output | grep -o '"result":[0-9]*' | grep -o '[0-9]*')
+  msg=$(echo $output | grep -o '"msg":"[^"]*' | sed 's/"msg":"//')
+  ret_code=$(echo $output | grep -o '"ret_code":[0-9]*' | grep -o '[0-9]*')
+  echo "Result: $result"
+  echo "Message: $msg"
+  echo "Return Code: $ret_code"
+  
+	if curl -s --head --connect-timeout 10 https://www.baidu.com | head -n 1 | grep "HTTP/1.[01] [23].." >/dev/null; then
+		echo "Connected to the Internet"
+	else
+		echo "Not connected to the Internet"
+	fi
+}
+
+# offline user
+# Kick off users outside the whitelist every 5 minutes
+# Because users outside the whitelist are so hated,
+# they will be penalized by the machine.
+offline() {
+  curl --request GET 'http://10.10.244.240:8080/Self/login/?302=LI' --header 'Connection: keep-alive'  --silent -v > tmp 2>&1
+  checkcode=$(cat tmp | grep checkcode | sed -n 's/.*value="\([^"]*\)".*/\1/p')
+  JSESSIONID=$(cat tmp | awk '/< Set-Cookie: JSESSIONID=/ {match($0, /< Set-Cookie: JSESSIONID=([^;]*)/, arr); print arr[1]}')
+  echo "checkcode: $checkcode"
+  echo "JSESSIONID: $JSESSIONID"
+  curl --request GET 'http://10.10.244.240:8080/Self/login/randomCode' \
+       --header "Cookie: "JSESSIONID=$JSESSIONID"" --silent > /dev/null 2>&1
+  curl --location --request POST 'http://10.10.244.240:8080/Self/login/verify' \
+       --form 'account="nic21030518"' \
+       --form 'password="Abc@12345"' \
+       --form "checkcode="$checkcode"" \
+       --header "Cookie: "JSESSIONID=$JSESSIONID"" --silent > /dev/null 2>&1
+  curl --location --request GET 'http://10.10.244.240:8080/Self/dashboard/getOnlineList' \
+       --header "Cookie: "JSESSIONID=$JSESSIONID""
+}
+
+login

@@ -83,6 +83,35 @@ window#waybar.hidden {
   color: #e8a2af;
 }
 
+window#waybar {
+  background: transparent;
+  /*    background-color: rgba(43, 48, 59, 0.5); */
+  /*    border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
+  color: #ffffff;
+  transition-property: background-color;
+  transition-duration: .5s;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#waybar.empty #window {
+  background-color: transparent;
+}
+
+#workspaces {
+}
+
+#window {
+  margin: 2;
+  padding-left: 8;
+  padding-right: 8;
+  background-color: rgba(0,0,0,0.3);
+  font-size:14px;
+  font-weight: bold;
+}
+
 #network {
   margin-top: 6px;
   margin-left: 8px;

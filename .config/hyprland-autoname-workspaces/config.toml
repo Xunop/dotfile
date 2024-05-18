@@ -1,184 +1,152 @@
-version = "1.1.12"
+version = "1.1.13"
 
-# [format]
-# Deduplicate icons if enable.
-# A superscripted counter will be added.
-# dedup = false
-# dedup_inactive_fullscreen = false # dedup more
-# window delimiter
-# delim = " "
-# max_clients = 30 # you should not need this
-
-# available formatter:
-# {counter_sup} - superscripted count of clients on the workspace, and simple {counter}, {delim}
-# {icon}, {client}
-# workspace formatter
-# workspace = "{id}:{delim}{clients}" # {id}, {delim} and {clients} are supported
-# workspace_empty = "{id}" # {id}, {delim} and {clients} are supported
-# client formatter
-# client = "{icon}"
-# client_active = "*{icon}*"
-
-# deduplicate client formatter
-# client_fullscreen = "[{icon}]"
-# client_dup = "{client}{counter_sup}"
-# client_dup_fullscreen = "[{icon}]{delim}{icon}{counter_unfocused}"
-# client_dup_active = "*{icon}*{delim}{icon}{counter_unfocused}"
-
+[class]
+duolingo = ""
+gcr-prompter = ""
+chrome-faolnafnngnfdaknnbpnkhgohbobgegn-default = ""
+kak = ""
+rapid-photo-downloader = ""
+DEFAULT = " {class}: {title}"
+personal = ""
+libreoffice-calc = ""
+"org.telegram.desktop" = ""
+udiskie = ""
+dmenu-clipboard = ""
+work = ""
+"(?i)feishu" = ""
+"(?i)thunar" = ""
+kicad = ""
+".*transmission.*" = ""
+vncviewer = ""
+sun-awt-x11-xframepeer = ""
+virt-manager = ""
+element = ""
+"(?i)kitty" = ""
+molotov = ""
+"dmenu-pass generator" = ""
+neomutt = ""
+darktable = ""
+vimiv = ""
+vlc = ""
+scli = ""
+org-pwmt-zathura = ""
+cssh = ""
+wire = "󰁀"
+sandboxed-tor-browser = ""
+qutepreview = ""
+Signal = ""
+"(?i)sqlitebrowser" = ""
+libreoffice-impress = ""
+taskwarrior-tui = ""
+whatsapp-desktop = ""
+discord = ""
+shopping = ""
+jetbrains-studio = ""
+whatsapp-nativefier-d52542 = ""
+org-ksnip-ksnip = ""
+xplr = ""
+"Gimp-2.10" = ""
+snappergui = ""
+telegramdesktop = ""
+"(?i)firefox" = "<span color='orange'> </span>"
+mpv = ""
+dmenu-pass = ""
+zoom = ""
+org-qutebrowser-qutebrowser = ""
+"(?i)darktable.*" = ""
+qalculate-gtk = ""
+bleachbit = ""
+"(?i)waydroid.*" = "droid"
+"(?i)alacritty" = ""
+wireshark-gtk = ""
+pavucontrol = ""
+spotify = ""
+"(?i)DBeaver Enterprise" = "🦫"
+obsidian = ""
+chromium = ""
+gsimplecalc = ""
+libreoffice-startcenter = ""
+libreoffice-writer = ""
+swappy = ""
+dmenu-emoji = ""
+streamlink-twitch-gui = ""
+steam = ""
+songrec = ""
+remote-viewer = ""
+"(?i)QQ.*" = ""
+"(?i)spotify" = ""
+burp-startburp = ""
+code-oss = ""
+fontforge = ""
+krita = ""
+nm-connection-editor = ""
+paperwork = ""
+slack = ""
+plexamp = ""
+wlfreerdp = "󰀄"
+calibre-gui = ""
+wayvnc = "󰀄"
+nemo = ""
+dmenu-browser = ""
 
 [class_active]
-DEFAULT = "*{icon}*"
 "(?i)ExampleOneTerm" = "<span foreground='red'>{icon}</span>"
+DEFAULT = "*{icon}*"
 
-# [initial_class]
-# "DEFAULT" = " {class}: {title}"
-# "(?i)Kitty" = "term"
+[initial_class]
 
-# [initial_class_active]
-# "(?i)Kitty" = "*TERM*"
+[initial_class_active]
 
-[title."(xterm|(?i)kitty|alacritty)"]
-"(?i)neomutt" = "mail"
+[workspaces_name]
+2 = "two"
+5 = "five"
+8 = "eight"
+4 = "four"
+7 = "seven"
+1 = "one"
+9 = "nine"
+6 = "six"
+0 = "zero"
+10 = "ten"
+3 = "three"
 
 [title_in_class."(?i)alacritty"]
 "(?i)neomutt" = "neomutt"
 "(?i)aerc" = "mail"
-"joshuto"= "file manager"
-# regex captures support is supported
-# "emerge: (.+?/.+?)-.*" = "{match1}"
+joshuto = "file manager"
 
 [title_in_class_active."(?i)firefox"]
 "(?i)twitch" = "<span color='purple'>{icon}</span>"
 "(?i)bilibili" = "<span color='pink'>{icon}</span>"
 
-# [title_in_initial_class."(?i)kitty"]
-# "(?i)neomutt" = "neomutt"
+[title_in_initial_class]
 
-# [initial_title_in_class."(?i)kitty"]
-# "(?i)neomutt" = "neomutt"
+[title_in_initial_class_active]
 
-# [initial_title_in_initial_class."(?i)kitty"]
-# "(?i)neomutt" = "neomutt"
+[initial_title_in_class]
 
-# [initial_title."(?i)kitty"]
-# "zsh" = "Zsh"
+[initial_title_in_class_active]
 
-# [initial_title_active."(?i)kitty"]
-# "zsh" = "*Zsh*"
+[initial_title_in_initial_class]
 
-# Add your applications that need to be exclude
-# The key is the class, the value is the title.
-# You can put an empty title to exclude based on
-# class name only, "" make the job.
+[initial_title_in_initial_class_active]
+
 [exclude]
-"" = "^$" # prevent displaying icon for empty class
-"(?i)fcitx" = ".*" # will match all title for fcitx
-"(?i)TestApp" = "" # will match all title for TestApp
-aProgram = "^$" # will match null title for aProgram
-"[Ss]team" = "^(Friends List.*)?$" # will match Steam friends list plus all popups (empty titles)
+"(?i)fcitx" = ".*"
+"[Ss]team" = "^(Friends List.*)?$"
+aProgram = "^$"
+"(?i)TestApp" = ""
+"" = "^$"
 
-[workspaces_name]
-0 = "zero"
-1 = "one"
-2 = "two"
-3 = "three"
-4 = "four"
-5 = "five"
-6 = "six"
-7 = "seven"
-8 = "eight"
-9 = "nine"
-10 = "ten"
-
-[class]
-# Add your icons mapping
-# use double quote the key and the value
-# take class name from 'hyprctl clients'
-"DEFAULT" = " {class}: {title}"
-# "(?i)Alacritty" = "term"
-# "[Ff]irefox" = "browser"
-"(?i)darktable.*" = ""
-"(?i)waydroid.*" = "droid"
-"(?i)DBeaver Enterprise" = "🦫"
-"(?i)feishu" = ""
-#"(?i)telegram.*" = "TG"
-"(?i)QQ.*" = ""
-"(?i)thunar" = ""
-"(?i)firefox" = "<span color='orange'> </span>"
-"(?i)kitty" = ""
-"(?i)alacritty" = ""
-bleachbit = ""
-burp-startburp = ""
-calibre-gui = ""
-"chrome-faolnafnngnfdaknnbpnkhgohbobgegn-default" = ""
-chromium = ""
-"Gimp-2.10" = ""
-code-oss = ""
-cssh = ""
-darktable = ""
-discord = ""
-dmenu-clipboard = ""
-dmenu-pass = ""
-duolingo = ""
-element = ""
-fontforge = ""
-gcr-prompter = ""
-gsimplecalc = ""
-"jetbrains-studio" = ""
-"kak" = ""
-kicad = ""
-obsidian = ""
-"dmenu-emoji" = ""
-"dmenu-browser" = ""
-"dmenu-pass generator" = ""
-"qalculate-gtk" = ""
-krita = ""
-libreoffice-calc = ""
-libreoffice-impress = ""
-libreoffice-startcenter = ""
-libreoffice-writer = ""
-molotov = ""
-mpv = ""
-neomutt = ""
-nm-connection-editor = ""
-org-ksnip-ksnip = ""
-org-pwmt-zathura = ""
-org-qutebrowser-qutebrowser = ""
-"org.telegram.desktop" = ""
-paperwork = ""
-pavucontrol = ""
-personal = ""
-plexamp = ""
-qutepreview = ""
-rapid-photo-downloader = ""
-remote-viewer = ""
-sandboxed-tor-browser = ""
-scli = ""
-shopping = ""
-Signal = ""
-slack = ""
-snappergui = ""
-songrec = ""
-spotify = ""
-steam = ""
-streamlink-twitch-gui = ""
-sun-awt-x11-xframepeer = ""
-swappy = ""
-taskwarrior-tui = ""
-telegramdesktop = ""
-".*transmission.*" = ""
-udiskie = ""
-vimiv = ""
-virt-manager = ""
-vlc = ""
-vncviewer = ""
-wayvnc = "󰀄"
-whatsapp-desktop = ""
-whatsapp-nativefier-d52542 = ""
-wire = "󰁀"
-wireshark-gtk = ""
-wlfreerdp = "󰀄"
-work = ""
-xplr = ""
-nemo = ""
-zoom = ""
+[format]
+dedup = false
+dedup_inactive_fullscreen = false
+delim = " "
+workspace = "{id}:{delim}{clients}"
+workspace_empty = "{id}"
+client = "{icon}"
+client_fullscreen = "[{icon}]"
+client_active = "*{icon}*"
+client_dup = "{icon}{counter_sup}"
+client_dup_active = "*{icon}*{delim}{icon}{counter_unfocused_sup}"
+client_dup_fullscreen = "[{icon}]{delim}{icon}{counter_unfocused_sup}"

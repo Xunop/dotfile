@@ -94,8 +94,64 @@ set_proxy() {
   # echo "proxy start."
   # echo "proxy server: $proxy_server"
 }
-set_proxy
 
+# unset_proxy
+unset_proxy() {
+  unset http_proxy
+  unset https_proxy
+  #unset ftp_proxy
+  #unset rsync_proxy
+  unset all_proxy
+  unset HTTP_PROXY
+  unset HTTPS_PROXY
+  #unset FTP_PROXY
+  #unset RSYNC_PROXY
+  unset ALL_PROXY
+
+  unset no_proxy
+  unset NO_PROXY
+
+  # echo "proxy stop."
+}
+
+# set_proxy
+k8s_proxy() {
+  proxy_server="http://192.168.49.1:10809"
+  no_proxy="localhost,127.0.0.1,.local"
+  export http_proxy="$proxy_server"
+  export https_proxy="$proxy_server"
+  #export ftp_proxy="$proxy_server"
+  #export rsync_proxy="$proxy_server"
+  export all_proxy="$proxy_server"
+  export HTTP_PROXY="$proxy_server"
+  export HTTPS_PROXY="$proxy_server"
+  #export FTP_PROXY="$proxy_server"
+  #export RSYNC_PROXY="$proxy_server"
+  export ALL_PROXY="$proxy_server"
+
+  export no_proxy="$no_proxy"
+  export NO_PROXY="$no_proxy"
+
+  # echo "proxy start."
+  # echo "proxy server: $proxy_server"
+}
+unset_proxy() {
+  unset http_proxy
+  unset https_proxy
+  #unset ftp_proxy
+  #unset rsync_proxy
+  unset all_proxy
+  unset HTTP_PROXY
+  unset HTTPS_PROXY
+  #unset FTP_PROXY
+  #unset RSYNC_PROXY
+  unset ALL_PROXY
+
+  unset no_proxy
+  unset NO_PROXY
+
+  # echo "proxy stop."
+}
 ##
 # aliases
 ## refresh packages
