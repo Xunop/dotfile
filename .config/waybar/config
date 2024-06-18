@@ -2,7 +2,7 @@
 	"layer": "top",
 	"modules-left": ["custom/launcher", "memory", "tray"],
 	"modules-center": ["hyprland/workspaces"],
-	"modules-right": ["custom/yubikey", "custom/spotify", "custom/updates", "network", "clock"],
+	"modules-right": ["custom/yubikey", "custom/spotify", "backlight", "battery", "custom/updates", "network", "clock"],
 	
     "tray": {
         "icon-size": 18,

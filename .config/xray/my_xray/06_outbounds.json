@@ -1,12 +1,85 @@
 {
         "outbounds": [
                 {
+                        "tag": "z-proxy-jp",
+                        "protocol": "vless",
+                        "settings": {
+                                "vnext": [
+                                        {
+                                                "address": "z_jp_domain",
+                                                "port": 52842,
+                                                "users": [
+                                                        {
+                                                                "id": "z_jp_uuid",
+                                                                "encryption": "none",
+                                                                "flow": ""
+                                                        }
+                                                ]
+                                        }
+                                ],
+                                "domainStrategy": "UseIPv4"
+                        },
+                        "streamSettings": {
+                                "network": "tcp",
+                                "security": "reality",
+                                "realitySettings": {
+                                        "show": false,
+                                        "serverName": "yahoo.com",
+                                        // "serverName": "www.ujs.edu.cn",
+                                        "publicKey": "z_jp_publicKey",
+                                        "shortId": "27b4126a",
+                                        "allowInsecure": false,
+                                        "fingerprint": "chrome",
+                                        "spiderX": ""
+                                },
+                                "sockopt": {
+                                        "mark": 2
+                                }
+                        }
+                },
+                {
+                        "tag": "xun-proxy-lv",
+                        "protocol": "vless",
+                        "settings": {
+                                "vnext": [
+                                        {
+                                                "address": "xun_lv_domain",
+                                                "port": 443,
+                                                "users": [
+                                                        {
+                                                                "id": "xun_lv_uuid",
+                                                                "encryption": "none",
+                                                                "flow": "xtls-rprx-vision"
+                                                        }
+                                                ]
+                                        }
+                                ],
+                                "domainStrategy": "UseIPv4"
+                        },
+                        "streamSettings": {
+                                "network": "tcp",
+                                "security": "reality",
+                                "realitySettings": {
+                                        "show": false,
+                                        "serverName": "www.lovelive-anime.jp",
+                                        "publicKey": "xun_lv_publicKey",
+                                        "shortId": "eeeeffff",
+                                        "allowInsecure": false,
+                                        "fingerprint": "firefox",
+                                        "spiderX": ""
+                                },
+                                "sockopt": {
+                                        "mark": 2
+                                }
+                        }
+                },
+                {
                         "tag": "xun-proxy-jp",
                         "protocol": "vless",
                         "settings": {
                                 "vnext": [
                                         {
-                                                "address": "xun_jp_domain",
+                                                "address": "proxy_ip",
                                                 "port": 443,
                                                 "users": [
                                                         {
@@ -16,15 +89,23 @@
                                                         }
                                                 ]
                                         }
-                                ]
+                                ],
+                                "domainStrategy": "UseIPv4"
                         },
                         "streamSettings": {
                                 "network": "tcp",
-                                "security": "tls",
-                                "tlsSettings": {
-                                        "serverName": "",
+                                "security": "reality",
+                                "realitySettings": {
+                                        "show": false,
+                                        "serverName": "www.lovelive-anime.jp",
+                                        "publicKey": "xun_jp_publicKey",
+                                        "shortId": "eeeeffff",
                                         "allowInsecure": false,
-                                        "fingerprint": "firefox"
+                                        "fingerprint": "chrome",
+                                        "spiderX": ""
+                                },
+                                "sockopt": {
+                                        "mark": 2
                                 }
                         }
                 },
@@ -56,43 +137,6 @@
                                         // "serverName": "www.ujs.edu.cn",
                                         "publicKey": "h_jp_publicKey",
                                         "shortId": "ffffffff",
-                                        "allowInsecure": false,
-                                        "fingerprint": "firefox",
-                                        "spiderX": ""
-                                },
-                                "sockopt": {
-                                        "mark": 2
-                                }
-                        }
-                },
-                {
-                        "tag": "z-proxy-jp",
-                        "protocol": "vless",
-                        "settings": {
-                                "vnext": [
-                                        {
-                                                "address": "z_jp_domain",
-                                                "port": 443,
-                                                "users": [
-                                                        {
-                                                                "id": "z_jp_uuid",
-                                                                "encryption": "none",
-                                                                "flow": "xtls-rprx-vision"
-                                                        }
-                                                ]
-                                        }
-                                ],
-                                "domainStrategy": "UseIPv4"
-                        },
-                        "streamSettings": {
-                                "network": "tcp",
-                                "security": "reality",
-                                "realitySettings": {
-                                        "show": false,
-                                        "serverName": "idolmaster-official.jp",
-                                        // "serverName": "www.ujs.edu.cn",
-                                        "publicKey": "z_jp_publicKey",
-                                        "shortId": "00000000",
                                         "allowInsecure": false,
                                         "fingerprint": "firefox",
                                         "spiderX": ""
@@ -149,12 +193,12 @@
                                 "vnext": [
                                         {
                                                 "address": "z_hk_domain",
-                                                "port": 443,
+                                                "port": 52842,
                                                 "users": [
                                                         {
                                                                 "id": "z_hk_uuid",
                                                                 "encryption": "none",
-                                                                "flow": "xtls-rprx-vision"
+                                                                "flow": ""
                                                         }
                                                 ]
                                         }
@@ -166,10 +210,10 @@
                                 "security": "reality",
                                 "realitySettings": {
                                         "show": false,
-                                        "serverName": "idolmaster-official.jp",
+                                        "serverName": "yahoo.com",
                                         // "serverName": "www.ujs.edu.cn",
                                         "publicKey": "z_hk_publicKey",
-                                        "shortId": "ffffffff",
+                                        "shortId": "e2e93151",
                                         "allowInsecure": false,
                                         "fingerprint": "firefox",
                                         "spiderX": ""

@@ -2,7 +2,6 @@
 
 is_paused=$(dunstctl is-paused)
 echo $is_paused
-set -x
 dunstctl close-all
 if [ "$is_paused" = true ]; then
     echo $is_paused
@@ -13,4 +12,3 @@ elif [ "$is_paused" = false ]; then
 fi
 sleep 2
 exec dunstctl set-paused toggle
-set +x

@@ -1,0 +1,8 @@
+[Added Associations]
+image/jpeg=swappy.desktop;
+image/png=swappy.desktop;
+application/pdf=firefox.desktop;
+
+[Default Applications]
+x-scheme-handler/apifox=apifox.desktop
+application/pdf=firefox.desktop

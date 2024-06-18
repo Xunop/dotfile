@@ -15,6 +15,14 @@ declare -A conf_file
 declare -A back_file
 declare -A xray_file
 for BASE in ${file[@]}; do
+    [[ -f ${conf_dir}${BASE}.json ]] || touch ${conf_dir}${BASE}.json
+    [[ -f ${back_dir}${BASE}.json ]] || touch ${back_dir}${BASE}.json
+    [[ -f /etc/xray/${BASE}.json ]] || touch /etc/xray/${BASE}.json
+    [[ -f ${conf_dir}${BASE}.json ]] || echo '{}' > ${conf_dir}${BASE}.json
+    [[ -f ${back_dir}${BASE}.json ]] || echo '{}' > ${back_dir}${BASE}.json
+    [[ -f /etc/xray/${BASE}.json ]] || echo '{}' > /etc/xray/${BASE}.json
+done
+for BASE in ${file[@]}; do
   conf_file[$BASE]="${conf_dir}${BASE}.json"
   back_file[$BASE]="${back_dir}${BASE}.json"
   xray_file[$BASE]="/etc/xray/${BASE}.json"

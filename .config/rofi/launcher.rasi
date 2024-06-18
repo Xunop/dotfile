@@ -30,7 +30,7 @@ window {
     x-offset: 5px;
     y-offset: -50px;
     height: 70%;
-    width: 350px;
+    width: 250px;
     orientation: vertical;
 }
 

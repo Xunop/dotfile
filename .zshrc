@@ -94,7 +94,26 @@ set_proxy() {
   # echo "proxy start."
   # echo "proxy server: $proxy_server"
 }
-set_proxy
+# unset_proxy
+unset_proxy() {
+  unset http_proxy
+  unset https_proxy
+  #unset ftp_proxy
+  #unset rsync_proxy
+  unset all_proxy
+  unset HTTP_PROXY
+  unset HTTPS_PROXY
+  #unset FTP_PROXY
+  #unset RSYNC_PROXY
+  unset ALL_PROXY
+
+  unset no_proxy
+  unset NO_PROXY
+
+  # echo "proxy stop."
+}
+
+#set_proxy
 
 ##
 # aliases
@@ -108,7 +127,7 @@ alias ua-update-all='export TMPFILE="$(mktemp)"; \
       && ua-drop-caches \
       && paru -Syyu --noconfirm'
 
-alias rm='sl -5 -a -d -e -w'
+#alias rm='sl -5 -a -d -e -w'
 
 alias ls='lsd'
 alias l='ls -l'
@@ -161,3 +180,5 @@ alias rvbuild='rvbuild.sh -C $(mktemp -d -t '\''riscv_cache_XXX'\'') -d'
 #alias rvbuild2='rvbuild.sh -C $(mktemp -d -t '\''riscv_cache_XXX'\'') -d'
 
 # zprof
+#
+alias sshj ssh panyihuan@panyihuan@10.20.34.27@125.94.43.42 -p 2222 -i ~/.ssh/qiniu_ed25519
