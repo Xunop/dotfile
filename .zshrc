@@ -1,7 +1,19 @@
-# zmodload zsh/zprof
+#zmodload zsh/zprof
 # time zsh -i -c "print -n"
 # Created by newuser for 5.9
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.config/.script:$HOME/Workspace/riscv/scripts:$PATH
+
+func append_path() {
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) PATH="${PATH:+$PATH:}$1" ;;
+  esac
+}
+
+# export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.config/.script:$HOME/Workspace/riscv/scripts:$PATH
+for i in $HOME/bin /usr/local/bin $HOME/.local/bin $HOME/.config/.script; do
+  append_path $i
+done
+
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export HISTFILE="$HOME/.zsh_history"
@@ -179,6 +191,10 @@ alias nmwl='nmcli dev wifi list'
 alias rvbuild='rvbuild.sh -C $(mktemp -d -t '\''riscv_cache_XXX'\'') -d'
 #alias rvbuild2='rvbuild.sh -C $(mktemp -d -t '\''riscv_cache_XXX'\'') -d'
 
+# Qiniu work
+alias sshj='~/workspace/scripts/totp/jms.sh'
+alias ,vpc='sudo ~/workspace/scripts/auto-route/auto_vpn.sh'
+alias ,auto='sudo bash ~/workspace/scripts/auto-route/auto_routing.sh'
+
 # zprof
 #
-alias sshj ssh panyihuan@panyihuan@10.20.34.27@125.94.43.42 -p 2222 -i ~/.ssh/qiniu_ed25519
