@@ -1,0 +1,17 @@
+[Unit]
+Description=Bluetooth Headset Disconnect Listener
+After=bluetooth.target
+Requires=bluetooth.target
+
+[Service]
+Type=simple
+User=xun
+Group=xun
+WorkingDirectory=/opt/bluetooth_headset_monitor
+Environment="PATH=/opt/bluetooth_headset_monitor/venv/bin:/usr/bin:/bin"
+ExecStart=/opt/bluetooth_headset_monitor/venv/bin/python /opt/bluetooth_headset_monitor/bluetooth_headset_monitor.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

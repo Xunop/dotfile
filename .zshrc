@@ -1,7 +1,19 @@
 # zmodload zsh/zprof
 # time zsh -i -c "print -n"
 # Created by newuser for 5.9
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.config/.script:$HOME/Workspace/riscv/scripts:$PATH
+
+func append_path() {
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) PATH="${PATH:+$PATH:}$1" ;;
+  esac
+}
+
+# export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.config/.script:$HOME/Workspace/riscv/scripts:$PATH
+for i in $HOME/bin /usr/local/bin $HOME/.local/bin $HOME/.config/.script; do
+  append_path $i
+done
+
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export HISTFILE="$HOME/.zsh_history"
@@ -117,7 +129,7 @@ unset_proxy() {
 # set_proxy
 k8s_proxy() {
   proxy_server="http://192.168.49.1:10809"
-  no_proxy="localhost,127.0.0.1,.local"
+  no_proxy="localhost,127.0.0.1,.local,192.168.49.2"
   export http_proxy="$proxy_server"
   export https_proxy="$proxy_server"
   #export ftp_proxy="$proxy_server"
@@ -135,6 +147,7 @@ k8s_proxy() {
   # echo "proxy start."
   # echo "proxy server: $proxy_server"
 }
+
 unset_proxy() {
   unset http_proxy
   unset https_proxy
@@ -216,4 +229,6 @@ alias nmwl='nmcli dev wifi list'
 alias rvbuild='rvbuild.sh -C $(mktemp -d -t '\''riscv_cache_XXX'\'') -d'
 #alias rvbuild2='rvbuild.sh -C $(mktemp -d -t '\''riscv_cache_XXX'\'') -d'
 
+# minikube kubectl
+#alias kubectl='minikube kubectl --'
 # zprof
