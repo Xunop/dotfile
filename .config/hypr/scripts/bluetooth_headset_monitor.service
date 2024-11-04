@@ -8,7 +8,7 @@ Type=simple
 User=xun
 Group=xun
 WorkingDirectory=/opt/bluetooth_headset_monitor
-Environment="PATH=/opt/bluetooth_headset_monitor/venv/bin:/usr/bin:/bin"
+Environment="PATH=/opt/bluetooth_headset_monitor/venv/bin:/usr/bin:/bin" "DISPLAY=:0" "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus"
 ExecStart=/opt/bluetooth_headset_monitor/venv/bin/python /opt/bluetooth_headset_monitor/bluetooth_headset_monitor.py
 Restart=on-failure
 RestartSec=5
