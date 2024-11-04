@@ -97,3 +97,19 @@ config commit -m "<commit message>"
 ```bash
 config push <remote> <branch>
 ```
+
+### AGS
+
+```console
+gtksourceview3
+brightnessctl
+dart-sass
+ddcutil(mod: i2c-dev)
+gnome-bluetooth-3.0
+ttf-readex-pro
+ttf-jetbrains-mono-nerd
+ttf-material-symbols-variable-git
+ttf-space-mono-nerd
+ttf-rubik-vf
+ttf-gabarito-git
+```
