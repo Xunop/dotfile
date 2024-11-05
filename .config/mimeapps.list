@@ -2,7 +2,14 @@
 image/jpeg=swappy.desktop;
 image/png=swappy.desktop;
 application/pdf=firefox.desktop;
+video/x-matroska=mplayer.desktop;
+video/mp4=mpv.desktop;mplayer.desktop;
+x-scheme-handler/tonsite=org.telegram.desktop.desktop;
 
 [Default Applications]
 x-scheme-handler/apifox=apifox.desktop
 application/pdf=firefox.desktop
+x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
+x-scheme-handler/eclipse+mpc=_opt_dbeaver-ee_.desktop
+video/x-matroska=mpv.desktop
+x-scheme-handler/tonsite=org.telegram.desktop.desktop

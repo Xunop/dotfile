@@ -11,7 +11,7 @@ while true; do
     fi
     printf '{"text": ""}\n'
 
-    nc -U "$socket" | while read -n5 cmd; do
+    ncat -U "$socket" | while read -n5 cmd; do
         reason="${cmd:0:3}"
 
         if [ "${cmd:4:1}" = "1" ]; then
