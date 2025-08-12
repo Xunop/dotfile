@@ -1,0 +1,182 @@
+#zmodload zsh/zprof
+# time zsh -i -c "print -n"
+# Created by newuser for 5.9
+
+func append_path() {
+  case ":$PATH:" in
+    *":$1:"*) ;;
+    *) PATH="${PATH:+$PATH:}$1" ;;
+  esac
+}
+
+# for i in $HOME/bin /usr/local/bin $HOME/.local/bin $HOME/.config/.script; do
+#   append_path $i
+# done
+typeset -U path
+path=(
+    "$HOME/bin"
+    "$HOME/.local/bin"
+    "$HOME/.config/.script"
+    "$HOME/Workspace/riscv/scripts"
+    /usr/local/bin
+    $path # Append the original system path
+)
+
+# Export core environment variables
+export EDITOR='nvim'
+export XDG_CONFIG_HOME="$HOME/.config"
+export MAILDIR="$HOME/.mail"
+
+# GPG & SSH Agent configuration
+# Let GPG know which TTY it is running on
+export GPG_TTY="$(tty)"
+# Use gpg-agent for SSH authentication
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# Start gpg-agent only if it's not already running
+if ! gpg-agent --daemon --quiet > /dev/null 2>&1; then
+    gpgconf --launch gpg-agent
+fi
+
+
+setopt INTERACTIVE_COMMENTS
+setopt interactivecomments
+
+# =============== History Settings ===============
+# HISTFILE="$HOME/.zsh_history"
+# HISTSIZE=50000                 # Max commands stored in memory per session
+# SAVEHIST=1000000               # Max commands preserved in history file
+#
+# # Standard history options
+# setopt EXTENDED_HISTORY        # Record timestamp and duration
+# setopt HIST_EXPIRE_DUPS_FIRST
+# setopt HIST_FIND_NO_DUPS
+# setopt HIST_IGNORE_ALL_DUPS    # A new command duplicates an old one, the old one is removed
+# setopt HIST_IGNORE_SPACE
+# setopt HIST_REDUCE_BLANKS
+# setopt HIST_SAVE_NO_DUPS       # Don't write duplicate entries to the history file
+#
+# # The magic combination for seamless, shared, and persistent history
+# setopt APPEND_HISTORY          # Appends to the history file on shell exit
+# setopt INC_APPEND_HISTORY      # Appends to the history file after each command (share across sessions)
+# setopt SHARE_HISTORY           # Imports new commands from the history file before each prompt
+
+# Set the keybings to vi
+set -o vi
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load theme
+zinit ice pick"async.zsh" lucid wait"!0" src"pure.zsh"
+zinit light sindresorhus/pure
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+# Load mcfly
+# https://github.com/cantino/mcfly
+zinit ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"'
+zinit light cantino/mcfly
+# zinit bindmap
+
+# Load plugin
+zinit wait lucid for \
+  atinit"zicompinit; zicdreplay" \
+      zdharma-continuum/fast-syntax-highlighting \
+  atload"_zsh_autosuggest_start" \
+      zsh-users/zsh-autosuggestions \
+  blockf atpull'zinit creinstall -q .' \
+      zsh-users/zsh-completions \
+
+# Load vi-mode
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
+# Load nvm
+zinit ice wait"0b" lucid
+zinit light lukechilds/zsh-nvm
+
+##
+# aliases
+## refresh packages
+alias ua-drop-caches='sudo paccache -rk3; paru -Sc --aur --noconfirm'
+alias ua-update-all='export TMPFILE="$(mktemp)"; \
+    sudo true; \
+    rate-mirrors --save=$TMPFILE arch --max-delay=21600 \
+      && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
+      && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
+      && ua-drop-caches \
+      && paru -Syyu --noconfirm'
+
+#alias rm='sl -5 -a -d -e -w'
+
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+alias cp='cp -i'
+alias mv='mv -i'
+alias ip='ip --color=auto'
+
+
+alias la='ls -A'
+alias ll='ls -Al'
+alias sp='wl-clipboard-history -l'
+
+# alias for packages
+alias ua-drop-caches='sudo paccache -rk3; paru -Sc --aur --noconfirm'
+alias ua-update-all='export TMPFILE="$(mktemp)"; \
+    sudo true; \
+    rate-mirrors --save=$TMPFILE arch --max-delay=21600 \
+      && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
+      && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
+      && ua-drop-caches \
+      && paru -Syyu --noconfirm'
+
+# alias for git dotfiles
+alias config='/usr/bin/git --git-dir=/home/xun/.cfg/ --work-tree=/home/xun/'
+
+# proxy
+alias proxy='source ~/.config/.script/proxy.sh'
+
+# joshuto
+alias jo='joshuto'
+
+# systemctl
+alias sc='systemctl'
+alias scs='systemctl status'
+alias sss='sudo systemctl start'
+alias ssr='sudo systemctl restart'
+alias ssc='sudo systemctl stop'
+
+# nmcli
+alias nmwc='nmcli dev wifi connect'
+alias nmwl='nmcli dev wifi list'
+
+# riscv package
+alias rvbuild='rvbuild.sh -C $(mktemp -d -t '\''riscv_cache_XXX'\'') -d'
+#alias rvbuild2='rvbuild.sh -C $(mktemp -d -t '\''riscv_cache_XXX'\'') -d'
+
+alias tec='dict -d ecdict'
+# zprof
+#
