@@ -1,6 +1,9 @@
-#zmodload zsh/zprof
+# Created by newuser for 5.9
+# zmodload zsh/zprof
 # time zsh -i -c "print -n"
 # Created by newuser for 5.9
+
+# PATH=$(echo -n "$PATH" | awk -v RS=: -v ORS=: '$0 != "/home/xun/.local/share/zinit/plugins/junegunn---fzf" {print}' | sed 's/:$//')
 
 func append_path() {
   case ":$PATH:" in
@@ -9,59 +12,48 @@ func append_path() {
   esac
 }
 
-# for i in $HOME/bin /usr/local/bin $HOME/.local/bin $HOME/.config/.script; do
-#   append_path $i
-# done
-typeset -U path
-path=(
-    "$HOME/bin"
-    "$HOME/.local/bin"
-    "$HOME/.config/.script"
-    "$HOME/Workspace/riscv/scripts"
-    /usr/local/bin
-    $path # Append the original system path
-)
+# export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.config/.script:$HOME/Workspace/riscv/scripts:$PATH
+for i in $HOME/bin /usr/local/bin $HOME/.local/bin $HOME/.config/.script; do
+  append_path $i
+done
 
-# Export core environment variables
-export EDITOR='nvim'
 export XDG_CONFIG_HOME="$HOME/.config"
-export MAILDIR="$HOME/.mail"
 
-# GPG & SSH Agent configuration
-# Let GPG know which TTY it is running on
+export EDITOR=nvim
+export MAILDIR=~/.mail
+
+# gpg-agent
+# see .zshenv
 export GPG_TTY="$(tty)"
-# Use gpg-agent for SSH authentication
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-# Start gpg-agent only if it's not already running
-if ! gpg-agent --daemon --quiet > /dev/null 2>&1; then
-    gpgconf --launch gpg-agent
-fi
+gpgconf --launch gpg-agent
 
+export KUBECONFIG="$HOME/.config/kube/admin.conf"
+
+# Set the keybings to vi
+set -o vi
 
 setopt INTERACTIVE_COMMENTS
 setopt interactivecomments
 
 # =============== History Settings ===============
-# HISTFILE="$HOME/.zsh_history"
-# HISTSIZE=50000                 # Max commands stored in memory per session
-# SAVEHIST=1000000               # Max commands preserved in history file
-#
-# # Standard history options
-# setopt EXTENDED_HISTORY        # Record timestamp and duration
-# setopt HIST_EXPIRE_DUPS_FIRST
-# setopt HIST_FIND_NO_DUPS
-# setopt HIST_IGNORE_ALL_DUPS    # A new command duplicates an old one, the old one is removed
-# setopt HIST_IGNORE_SPACE
-# setopt HIST_REDUCE_BLANKS
-# setopt HIST_SAVE_NO_DUPS       # Don't write duplicate entries to the history file
-#
-# # The magic combination for seamless, shared, and persistent history
-# setopt APPEND_HISTORY          # Appends to the history file on shell exit
-# setopt INC_APPEND_HISTORY      # Appends to the history file after each command (share across sessions)
-# setopt SHARE_HISTORY           # Imports new commands from the history file before each prompt
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000                 # Max commands stored in memory per session
+SAVEHIST=1000000               # Max commands preserved in history file
 
-# Set the keybings to vi
-set -o vi
+# Standard history options
+setopt EXTENDED_HISTORY        # Record timestamp and duration
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS    # A new command duplicates an old one, the old one is removed
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS       # Don't write duplicate entries to the history file
+
+# The magic combination for seamless, shared, and persistent history
+setopt APPEND_HISTORY          # Appends to the history file on shell exit
+setopt INC_APPEND_HISTORY      # Appends to the history file after each command (share across sessions)
+setopt SHARE_HISTORY           # Imports new commands from the history file before each prompt
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -75,6 +67,9 @@ fi
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
+
+# init zsh completion
+zicompinit
 
 # Load theme
 zinit ice pick"async.zsh" lucid wait"!0" src"pure.zsh"
@@ -92,26 +87,165 @@ zinit light-mode for \
 
 # Load mcfly
 # https://github.com/cantino/mcfly
-zinit ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"'
-zinit light cantino/mcfly
+# zinit ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"'
+# zinit light cantino/mcfly
 # zinit bindmap
 
 # Load plugin
 zinit wait lucid for \
-  atinit"zicompinit; zicdreplay" \
+  atinit"zicdreplay" \
       zdharma-continuum/fast-syntax-highlighting \
   atload"_zsh_autosuggest_start" \
       zsh-users/zsh-autosuggestions \
   blockf atpull'zinit creinstall -q .' \
-      zsh-users/zsh-completions \
+      zsh-users/zsh-completions
 
-# Load vi-mode
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
-
-# Load nvm
+# Lazily load nvm
 zinit ice wait"0b" lucid
 zinit light lukechilds/zsh-nvm
+
+# [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+
+# set -x
+setup_fzf_customizations() {
+   # Use ~~ as the trigger sequence instead of the default **
+   export FZF_COMPLETION_TRIGGER='~~'
+
+   # Options to fzf command
+   export FZF_COMPLETION_OPTS='--border --info=inline'
+
+   # Options for path completion (e.g. vim **<TAB>)
+   export FZF_COMPLETION_PATH_OPTS='--walker file,dir,follow,hidden'
+
+   # Options for directory completion (e.g. cd **<TAB>)
+   export FZF_COMPLETION_DIR_OPTS='--walker dir,follow'
+
+   # Advanced customization of fzf options via _fzf_comprun function
+   # - The first argument to the function is the name of the command.
+   # - You should make sure to pass the rest of the arguments ($@) to fzf.
+   _fzf_comprun() {
+     local command=$1
+     shift
+   
+     case "$command" in
+       cd)           fzf --preview 'tree -C {} | head -200'   "$@" ;;
+       export|unset) fzf --preview "eval 'echo \$'{}"         "$@" ;;
+       ssh)          fzf --preview 'dig {}'                   "$@" ;;
+       *)            fzf --preview 'bat -n --color=always {}' "$@" ;;
+     esac
+   }
+
+   # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+   # - The first argument to the function ($1) is the base path to start traversal
+   # - See the source code (completion.{bash,zsh}) for the details.
+   _fzf_compgen_path() {
+     fd --hidden --follow --exclude ".git" . "$1"
+   }
+
+   # Use fd to generate the list for directory completion
+   _fzf_compgen_dir() {
+     fd --type d --hidden --follow --exclude ".git" . "$1"
+   }
+
+   # CTRL-R - Paste the selected command from history into the command line
+   # MODIFIED to show only relative time (e.g., 3d, 18:00) and the command.
+   # It hides the history number from the display but uses it internally.
+   fzf-history-widget() {
+     local selected_line
+     # The original history line (with number) is needed for selection.
+     # We will pass it to fzf but only display the formatted parts.
+     local selected_hist_num
+     setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases noglob nobash_rematch 2> /dev/null
+
+     # Requires `setopt EXTENDED_HISTORY`.
+     # The output of this pipeline is in the format: "history_num<TAB>formatted_time<TAB>command"
+     selected_line="$(fc -rli -t '%s' 1 | \
+       # awk script to de-duplicate, format time, and structure the output for fzf.
+       awk '
+         # Set TAB as the output field separator for easier parsing later.
+         BEGIN { OFS="\t" }
+         {
+           # Extract the command for de-duplication key.
+           cmd=$0;
+           sub(/^[ \t]*[0-9]+\**[ \t]+[0-9]+[ \t]+/, "", cmd);
+
+           if (!seen[cmd]++) {
+             hist_num=$1;
+             ts = int($2);
+             # Strip the command part itself to re-append later.
+             sub(/^[ \t]*[0-9]+\**[ \t]+[0-9]+[ \t]+/, "");
+             command=$0;
+
+             # --- Corrected Time Formatting Logic ---
+             delta = systime() - ts;
+             if (delta < 86400) { # Less than a day
+               time_str = strftime("%H:%M", ts);
+             } else { # A day or more
+               delta_days = int(delta / 86400);
+               time_str = delta_days "d";
+             }
+             # Pad the time string for alignment.
+             time_str = sprintf("%-7s", time_str);
+
+             # Print three columns, separated by TABS:
+             # 1. History number (will be hidden by fzf)
+             # 2. Formatted time (will be displayed)
+             # 3. The command itself (will be displayed)
+             print hist_num, time_str, command;
+           }
+         }
+       ' | \
+       # Pipe to fzf with special options to control display vs. selection.
+       FZF_DEFAULT_OPTS=$(__fzf_defaults "" " \
+         --delimiter='\t' \
+         --with-nth=2,3 \
+         --scheme=history \
+         --bind=ctrl-r:toggle-sort \
+         ${FZF_CTRL_R_OPTS-} \
+         --query=${(qqq)LBUFFER} \
+         +m") \
+       FZF_DEFAULT_OPTS_FILE='' $(__fzfcmd))"
+
+     local ret=$?
+     if [ -n "$selected_line" ]; then
+       # Extract the hidden history number, which is the first column of the selected line.
+       selected_hist_num=$(awk -F'\t' '{print $1}' <<< "$selected_line")
+
+       if [[ "$selected_hist_num" =~ ^[1-9][0-9]* ]]; then
+         zle vi-fetch-history -n "$selected_hist_num"
+       else
+         # Fallback for custom queries entered in fzf
+         # We need to strip the time part if the user selected a history item.
+         LBUFFER=$(awk -F'\t' '{print $3}' <<< "$selected_line")
+       fi
+     fi
+     zle reset-prompt
+     return $ret
+   }
+
+   # The bindings remain the same
+   zle     -N            fzf-history-widget
+   bindkey -M emacs '^R' fzf-history-widget
+   bindkey -M vicmd '^R' fzf-history-widget
+   bindkey -M viins '^R' fzf-history-widget
+}
+
+zinit ice \
+    as"program" \
+    pick"bin/fzf" \
+    src"shell/key-bindings.zsh" \
+    atload"setup_fzf_customizations"
+zinit light junegunn/fzf
+
+# https://github.com/jeffreytse/zsh-vi-mode/issues/297
+# Load vi-mode and setup_fzf_customizations
+zinit ice depth=1 atload"setup_fzf_customizations"
+ZVM_INIT_MODE=sourcing
+zinit light jeffreytse/zsh-vi-mode
+# set +x
+# zinit report junegunn/fzf
+
 
 ##
 # aliases
@@ -177,6 +311,3 @@ alias nmwl='nmcli dev wifi list'
 alias rvbuild='rvbuild.sh -C $(mktemp -d -t '\''riscv_cache_XXX'\'') -d'
 #alias rvbuild2='rvbuild.sh -C $(mktemp -d -t '\''riscv_cache_XXX'\'') -d'
 
-alias tec='dict -d ecdict'
-# zprof
-#
