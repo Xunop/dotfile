@@ -232,11 +232,15 @@ setup_fzf_customizations() {
 }
 
 zinit ice \
-    as"program" \
-    pick"bin/fzf" \
     src"shell/key-bindings.zsh" \
     atload"setup_fzf_customizations"
 zinit light junegunn/fzf
+# zinit ice \
+#     as"program" \
+#     pick"bin/fzf" \
+#     src"shell/key-bindings.zsh" \
+#     atload"setup_fzf_customizations"
+# zinit light junegunn/fzf
 
 # https://github.com/jeffreytse/zsh-vi-mode/issues/297
 # Load vi-mode and setup_fzf_customizations
